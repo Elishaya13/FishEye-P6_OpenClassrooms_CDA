@@ -3,7 +3,7 @@
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
+    background-color: var(--tertiaryColor);
     height: 300px;
     margin: 0 100px;
 }
@@ -16,14 +16,19 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--primaryColor);
     border-radius: 5px;
     cursor: pointer;
 }
 
+.contact_button:hover,
+.contact_button:focus {
+    background-color: var(--secondaryColor)
+}
+
 .modal {
     border-radius: 5px;
-    background-color: #DB8876;
+    background-color: var(--secondaryColor);
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -56,7 +61,7 @@ form {
 }
 
 form label {
-    color: #312E2E;
+    color: var(--inputFontColor);
     font-size: 36px;
 }
 

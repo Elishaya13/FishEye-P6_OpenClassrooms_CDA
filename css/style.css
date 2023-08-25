@@ -2,12 +2,36 @@
 
 :root {
 
+    /* Colors */
     --primaryColor: #901c1c;
     --secondaryColor: #D3573C;
     --tertiaryColor: #FAFAFA;
     --tertiaryFontColor: #525252;
     --priceFontColor: #757575;
     --inputFontColor: #312E2E;
+
+    /* FontSize */
+    --h1: 2.25em;
+    --h2: 2.25em;
+    --h3: 1em;
+    --p: 0.813em;
+    --span: 0.75em;
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: inherit;
+    color: inherit;
+    font: inherit;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 body {
@@ -25,8 +49,28 @@ header {
 }
 
 h1 {
+    font-size: var(--h1);
     color: var(--primaryColor);
     margin-right: 100px;
+}
+
+h2 {
+    font-size: var(--h2);
+    font-weight: 400;
+}
+
+h3 {
+    font-size: var(--h3);
+    color: var(--primaryColor)
+}
+
+p {
+    font-size: var(--p);
+}
+
+span {
+    font-size: var(--span);
+    color: var(--priceFontColor)
 }
 
 .logo {
@@ -47,6 +91,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 0.3em;
 }
 
 .photographer_section article h2 {
@@ -57,4 +102,7 @@ h1 {
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+
 }

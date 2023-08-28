@@ -33,4 +33,27 @@ class PhotographersApi extends Api {
       throw new Error("Invalid data type");
     }
   }
+  async getPhotographerById(photographerId) {
+    const photographers = await this.getData("photographers");
+    const photographer = photographers.find((p) => p.id === photographerId);
+    if (photographer) {
+      return photographer;
+    } else {
+      throw new Error("Photographer not found");
+    }
+  }
+
+  async getMediaByPhotographerId(photographerId) {
+    // Récupere toutes les datas media
+    const mediaData = await this.getData("media");
+    // Filtre pour ne recuperer que celle de l'id donné
+    const photographerMedia = mediaData.filter(
+      (media) => media.photographerId === photographerId
+    );
+    if (photographerMedia) {
+      return photographerMedia;
+    } else {
+      throw new Error("Media not found");
+    }
+  }
 }

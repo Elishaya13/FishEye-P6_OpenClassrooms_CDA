@@ -19,14 +19,24 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographHeaderContent(parent) {
+    const photographerData = new Photographer(this._photographer);
+
     // Create photographer header content
     const photographHeader = `
-      <h2>${this._photographer.name}</h2>
-      <h3>${this._photographer.city}, ${this._photographer.country}</h3>
-      <p>${this._photographer.tagline}</p>
+    <div class="photographer-infos-container" data-testid="photographer-infos-container">
+      <h2>${photographerData.name}</h2>
+      <h3>${photographerData.city}, ${this._photographer.country}</h3>
+      <p>${photographerData.tagline}</p>
+    </div>  
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-
-     `;
+    <div class="photographer-profil-container" data-testid="photographer-profil-container">  
+      <img          
+            alt="${photographerData.name}"
+            src="${photographerData.portrait}"
+          
+        /> 
+    </div>          
+       `;
     parent.innerHTML = photographHeader;
   }
 

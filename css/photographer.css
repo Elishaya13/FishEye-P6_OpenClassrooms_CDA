@@ -1,6 +1,7 @@
 main {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 
 #contact_modal {
@@ -11,14 +12,30 @@ main {
     background-color: var(--tertiaryColor);
     height: 300px;
     margin: 0 100px;
+    padding: 0 3em 0 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.photographer-profil-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .photograph-medias-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    height: 300px;
+    margin: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 100px;
 }
+
 
 .photograph-media-item video,
 .photograph-media-item img {

@@ -7,7 +7,7 @@ class PhotographerCard {
     const $wrapper = document.createElement("article");
 
     const photographerCard = `
-      <a href=photographer.html?id=${this._photographer.id} role="link" aria-labelledby="photographer-name">
+      <a href=photographer.html?id=${this._photographer.id} role="link" aria-labelledby="photographer-name" data-testid="photographer-card-${this._photographer.id}">
         <img          
             alt="${this._photographer.name}"
             src="${this._photographer.portrait}"

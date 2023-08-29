@@ -19,14 +19,17 @@ class PhotographerMediaCard {
   createMediaCard() {
     const $mediaDiv = document.createElement("article");
     $mediaDiv.classList.add("photograph-media-item");
+    $mediaDiv.setAttribute("data-testid", `photograph-media-item-${this._id}`);
 
     const mediaCard = `
-      <a class="photograph-media-img" role="button" title="" href="#">
+      <a class="photograph-media-img" role="button" title="${
+        this._media.title
+      }" href="#">
       ${
         this._media.image && this._media.image !== ""
           ? `<img src="${this._media.image}" alt="${this._media.title}"></img>`
           : this._media.video
-          ? `<video loop src="${this._media.video}"></video>`
+          ? `<video src="${this._media.video}" type="video/mp4">Your browser does not support the video tag.</video>`
           : ""
       }
       </a>

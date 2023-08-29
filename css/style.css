@@ -4,7 +4,8 @@
 
     /* Colors */
     --primaryColor: #901c1c;
-    --secondaryColor: #D3573C;
+    /* secondary #DB8876 / #D3573C */
+    --secondaryColor: #DB8876;
     --tertiaryColor: #FAFAFA;
     --tertiaryFontColor: #525252;
     --priceFontColor: #757575;

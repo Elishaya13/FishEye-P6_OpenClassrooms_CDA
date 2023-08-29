@@ -8,6 +8,7 @@ class PhotographerPage {
     this.$photographerMediasWrapper = document.querySelector(
       ".photograph-medias-section"
     );
+    this.$photographerMain = document.getElementById("main");
 
     // Retrieves the ID parameter passed on the page
     this.params = new URL(document.location).searchParams;
@@ -48,6 +49,7 @@ class PhotographerPage {
       // Call the methods of the class for creating each visual part of the page
       Template.createPhotographHeaderContent(this.$photographersWrapper);
       Template.createPhotographMediaContent(this.$photographerMediasWrapper);
+      Template.createPhotographAboutContent(this.$photographerMain);
     } catch (error) {
       console.error("Error:", error);
       // Handle the error as needed

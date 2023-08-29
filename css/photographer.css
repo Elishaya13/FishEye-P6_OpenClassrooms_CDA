@@ -33,7 +33,7 @@ main {
 
 .photographer-infos-container h3,
 .photograph-media-item h3 {
-    font-size: var(--medium);
+    font-size: var(--small);
 }
 
 .photographer-infos-container p {
@@ -55,6 +55,8 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 100px;
+
+
 }
 
 .photograph-media-item {
@@ -82,9 +84,32 @@ main {
 
 .like-count,
 .heart-icon {
-    font-size: var(--medium);
+    font-size: var(--small);
     color: var(--primaryColor);
     flex: 1;
+}
+
+.heart-icon {
+    color: var(--secondaryColor);
+}
+
+.liked {
+    color: var(--primaryColor)
+}
+
+.footer {
+    width: auto;
+    height: 130px;
+}
+
+.photograph-about {
+    background-color: var(--secondaryColor);
+    width: 375px;
+    height: 90px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
 }
 
 .contact_button {

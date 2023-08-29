@@ -55,4 +55,15 @@ class PhotographerPageTemplate {
         parent.appendChild(Template.createMediaCard());
       });
   }
+
+  createPhotographAboutContent(parent) {
+    const $photographAboutDiv = document.createElement("div");
+    $photographAboutDiv.classList.add("photograph-about");
+
+    const photographAbout = `
+    <div>Rectangle like et prix</div>
+    `;
+    $photographAboutDiv.innerHTML = photographAbout;
+    parent.appendChild($photographAboutDiv);
+  }
 }

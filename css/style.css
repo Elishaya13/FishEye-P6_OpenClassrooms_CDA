@@ -16,8 +16,12 @@
     --h3: 1em;
     --p: 0.813em;
     --span: 0.75em;
-
-
+    /* 64px*/
+    --large: 4em;
+    /* 24 px*/
+    --medium: 1.5em;
+    /* 18 px*/
+    --small: 1.125em
 }
 
 * {

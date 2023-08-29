@@ -31,9 +31,16 @@ class PhotographerMediaCard {
           : this._media.video
           ? `<video src="${this._media.video}" type="video/mp4">Your browser does not support the video tag.</video>`
           : ""
-      }
+      }     
       </a>
-      <h3>${this._media.title}</h3>
+           
+        <div class="media-footer">
+          <h3>${this._media.title}</h3>
+          <span class="like-count">0</span>
+          <span class="heart-icon">
+            <i class="far fa-heart"></i>
+          </span>         
+        </div>    
 
      `;
 

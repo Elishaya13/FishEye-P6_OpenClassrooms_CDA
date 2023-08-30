@@ -18,7 +18,7 @@ class LikesCounter {
    * Add an observer to the list of observers.
    * @param {Object} observer - The observer to be added.
    */
-  addObserver(observer) {
+  subscribe(observer) {
     this.observers.push(observer);
   }
 

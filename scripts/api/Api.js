@@ -33,6 +33,7 @@ class PhotographersApi extends Api {
   constructor(url) {
     super(url);
   }
+
   /**
    * Get data of a specific type.
    *

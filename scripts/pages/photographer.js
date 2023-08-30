@@ -9,6 +9,7 @@ class PhotographerPage {
       ".photograph-medias-section"
     );
     this.$photographerMain = document.getElementById("main");
+    this.$photographerModal = document.getElementById("contact_modal");
 
     // Retrieves the ID parameter passed on the page
     this.params = new URL(document.location).searchParams;
@@ -49,6 +50,7 @@ class PhotographerPage {
       Template.createPhotographHeaderContent(this.$photographersWrapper);
       Template.createPhotographMediaContent(this.$photographerMediasWrapper);
       Template.createPhotographBoxAbout(this.$photographerMain);
+      Template.createPhotographerModal(this.$photographerModal);
     } catch (error) {
       console.error("Error:", error);
       // Handle the error as needed

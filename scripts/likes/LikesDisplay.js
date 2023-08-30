@@ -27,7 +27,6 @@ class LikesDisplay {
    * @throws {string} Throws an error if the action is unknown.
    */
   update(action) {
-    console.log("update");
     if (action === "INC") {
       this.count += 1;
     } else if (action === "DEC") {

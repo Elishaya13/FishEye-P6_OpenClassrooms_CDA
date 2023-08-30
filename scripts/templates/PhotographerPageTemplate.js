@@ -15,11 +15,12 @@ class PhotographerPageTemplate {
 
     this.$countDisplay = null;
 
-    // Likes
+    // Total Number of Likes
     this.likes = this._medias
       .map((media) => media.likes)
       .reduce((a, b) => a + b, 0);
 
+    // Observable & Observer
     this.counterLikes = new LikesCounter(this.likes);
     this.displayLikes = null;
   }
@@ -29,25 +30,8 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographHeaderContent(parent) {
-    const photographerData = new Photographer(this._photographer);
-
-    // Create photographer header content
-    const photographHeader = `
-    <div class="photographer-infos-container" data-testid="photographer-infos-container">
-      <h2>${photographerData.name}</h2>
-      <h3>${photographerData.city}, ${this._photographer.country}</h3>
-      <p>${photographerData.tagline}</p>
-    </div>  
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    <div class="photographer-profil-container" data-testid="photographer-profil-container">  
-      <img          
-            alt="${photographerData.name}"
-            src="${photographerData.portrait}"
-          
-        /> 
-    </div>          
-       `;
-    parent.innerHTML = photographHeader;
+    const Template = new PhotographerHeader(this._photographer);
+    parent.innerHTML = Template.render();
   }
 
   /**
@@ -72,22 +56,26 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographBoxAbout(parent) {
-    const $photographAboutDiv = document.createElement("div");
-    $photographAboutDiv.classList.add("photograph-about");
+    const Template = new AboutBox(this.likes, this._photographer.price);
+    const renderedTemplate = Template.render();
+    parent.appendChild(renderedTemplate);
 
-    const photographAbout = `
-    
-      <span class = "likes-counter" aria-label="Nombre de Likes">${this.likes}</span>
-      <span class="heart-icon" aria-label="Icone Likes">
-      <i class="fas fa-heart"></i>
-      </span>
-      <span arai-label="Prix par jour du photographe">${this._photographer.price}€ / jour  </span>
-    `;
-    $photographAboutDiv.innerHTML = photographAbout;
-    parent.appendChild($photographAboutDiv);
+    //  The DOM element that displays the likes count.
+    this.$countDisplay = renderedTemplate.querySelector(".likes-counter");
 
-    this.$countDisplay = $photographAboutDiv.querySelector(".likes-counter");
+    // The observer that updates the likes display when the likes count changes.
     this.displayLikes = new LikesDisplay(this.likes, this.$countDisplay);
-    this.counterLikes.addObserver(this.displayLikes);
+
+    // Connect the observer (displayLikes) to the observable (counterLikes)
+    this.counterLikes.subscribe(this.displayLikes);
+  }
+
+  /**
+   * Create and inject the photographer modal content into the DOM.
+   * @param {HTMLElement} parent - The parent element to which the modal content will be injected.
+   */
+  createPhotographerModal(parent) {
+    const Template = new Modal(this._photographerName);
+    parent.appendChild(Template.render());
   }
 }

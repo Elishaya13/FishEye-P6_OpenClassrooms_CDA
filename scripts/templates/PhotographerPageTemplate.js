@@ -15,7 +15,7 @@ class PhotographerPageTemplate {
 
     this.$countDisplay = null;
 
-    // Likes Pub/Sub
+    // Likes
     this.likes = this._medias
       .map((media) => media.likes)
       .reduce((a, b) => a + b, 0);

@@ -1,4 +1,4 @@
-class PhotographerCard {
+class PhotographerIndexCard {
   constructor(photographer) {
     this._photographer = photographer;
   }

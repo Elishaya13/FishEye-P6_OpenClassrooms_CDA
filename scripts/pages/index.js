@@ -17,7 +17,7 @@ class Index {
     photographersData
       .map((photographer) => new Photographer(photographer))
       .forEach((photographer) => {
-        const Template = new PhotographerCard(photographer);
+        const Template = new PhotographerIndexCard(photographer);
         this.$photographersWrapper.appendChild(
           Template.createPhotographerCard()
         );

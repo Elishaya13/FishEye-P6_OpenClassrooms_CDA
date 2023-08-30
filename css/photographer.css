@@ -5,10 +5,6 @@ main {
 }
 
 
-#contact_modal {
-    display: none;
-}
-
 .photograph-header {
     background-color: var(--tertiaryColor);
     height: 300px;
@@ -143,6 +139,23 @@ main {
     background-color: var(--secondaryColor)
 }
 
+/* Modal */
+#contact_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #c4c4c466
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
 .modal {
     border-radius: 5px;
     background-color: var(--secondaryColor);
@@ -153,6 +166,7 @@ main {
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    margin-top: 3em;
 }
 
 .modal header {

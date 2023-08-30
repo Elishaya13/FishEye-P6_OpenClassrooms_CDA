@@ -7,10 +7,11 @@ class PhotographerMediaCard {
    * @param {Object} media - The media data for the card.
    * @param {string} photographName - The name of the photographer.
    */
-  constructor(media, photographName) {
+  constructor(media, photographName, LikesCounter) {
     this._photographName = photographName;
     this._media = media;
     this._count = media.likes;
+    this._likesCounter = LikesCounter;
 
     this.$mediaWrapper = document.createElement("article");
     this.$mediaWrapper.classList.add("photograph-media-item");
@@ -28,9 +29,11 @@ class PhotographerMediaCard {
       if ($heartIcon.classList.contains("liked")) {
         $heartIcon.classList.remove("liked");
         this._count--;
+        this._likesCounter.notifyObservers("DEC");
       } else {
         $heartIcon.classList.add("liked");
         this._count++;
+        this._likesCounter.notifyObservers("INC");
       }
       $likeCount.textContent = this._count;
     });

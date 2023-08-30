@@ -36,8 +36,7 @@ class PhotographerPage {
         console.error("Photographer data not available");
         return; // Exit the function or handle the error as needed
       }
-      // const photographerData = await this.photographerData;
-      // const photographerDataMedia = await this.photographerMedia;
+
       const photographerName = photographerData.name;
 
       const Template = new PhotographerPageTemplate(
@@ -49,7 +48,7 @@ class PhotographerPage {
       // Call the methods of the class for creating each visual part of the page
       Template.createPhotographHeaderContent(this.$photographersWrapper);
       Template.createPhotographMediaContent(this.$photographerMediasWrapper);
-      Template.createPhotographAboutContent(this.$photographerMain);
+      Template.createPhotographBoxAbout(this.$photographerMain);
     } catch (error) {
       console.error("Error:", error);
       // Handle the error as needed

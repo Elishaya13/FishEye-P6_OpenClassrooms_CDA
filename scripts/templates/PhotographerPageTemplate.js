@@ -12,6 +12,16 @@ class PhotographerPageTemplate {
     this._photographer = photographer;
     this._medias = medias;
     this._photographerName = photographerName;
+
+    this.$countDisplay = null;
+
+    // Likes Pub/Sub
+    this.likes = this._medias
+      .map((media) => media.likes)
+      .reduce((a, b) => a + b, 0);
+
+    this.counterLikes = new LikesCounter(this.likes);
+    this.displayLikes = null;
   }
 
   /**
@@ -50,20 +60,34 @@ class PhotographerPageTemplate {
       .forEach((media) => {
         const Template = new PhotographerMediaCard(
           media,
-          this._photographerName
+          this._photographerName,
+          this.counterLikes
         );
         parent.appendChild(Template.createMediaCard());
       });
   }
 
-  createPhotographAboutContent(parent) {
+  /**
+   * Create and inject the about content for the photographer page into the DOM.
+   * @param {HTMLElement} parent - The parent element to which the content will be injected.
+   */
+  createPhotographBoxAbout(parent) {
     const $photographAboutDiv = document.createElement("div");
     $photographAboutDiv.classList.add("photograph-about");
 
     const photographAbout = `
-    <div>Rectangle like et prix</div>
+    
+      <span class = "likes-counter" aria-label="Nombre de Likes">${this.likes}</span>
+      <span class="heart-icon" aria-label="Icone Likes">
+      <i class="fas fa-heart"></i>
+      </span>
+      <span arai-label="Prix par jour du photographe">${this._photographer.price}€ / jour  </span>
     `;
     $photographAboutDiv.innerHTML = photographAbout;
     parent.appendChild($photographAboutDiv);
+
+    this.$countDisplay = $photographAboutDiv.querySelector(".likes-counter");
+    this.displayLikes = new LikesDisplay(this.likes, this.$countDisplay);
+    this.counterLikes.addObserver(this.displayLikes);
   }
 }

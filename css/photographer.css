@@ -105,12 +105,25 @@ main {
 .photograph-about {
     background-color: var(--secondaryColor);
     width: 375px;
-    height: 90px;
+    height: 60px;
     position: fixed;
     bottom: 0;
     right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px 0 20px;
+    margin-right: 2em;
 
 }
+
+.photograph-about span {
+    color: black;
+    font-size: var(--medium);
+}
+
+
 
 .contact_button {
     font-size: 20px;

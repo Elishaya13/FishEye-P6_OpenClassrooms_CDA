@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -11,9 +11,10 @@
 </head>
 
 <body>
-  <header>
-    <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
-
+  <header role="banner">
+    <a href="index.html" role="link" aria-label="Accéder à la page d'accueil">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+    </a>
   </header>
   <main id="main">
     <section class="photograph-header" data-testid="photograph-header">
@@ -33,7 +34,7 @@
   <!--Templates-->
   <script src="scripts/templates/PhotographerMediaCard.js"></script>
   <script src="scripts/templates/PhotographerPageTemplate.js"></script>
-  <script src="scripts/templates/Modal.js"></script>
+  <script src="scripts/templates/ContactModal.js"></script>
   <script src="scripts/templates/AboutBox.js"></script>
   <script src="scripts/templates/PhotographerHeader.js"></script>
 

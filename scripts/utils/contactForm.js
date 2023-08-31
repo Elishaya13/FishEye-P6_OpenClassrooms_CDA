@@ -1,13 +1,27 @@
 function displayModal() {
   const $modalWrapper = document.getElementById("contact_modal");
-  const $modal = document.querySelector(".modal");
   $modalWrapper.style.display = "block";
-  $modal.focus();
+  const $contactModal = document.querySelector(".modal");
   document.body.classList.add("modal-open");
 
-  $modal.addEventListener("keydown", (event) => {
+  if ($contactModal) {
+    $contactModal.focus();
+    focusContactModal($contactModal);
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
+  document.body.classList.remove("modal-open");
+}
+
+function focusContactModal(form) {
+  $contactModal = form;
+
+  $contactModal.addEventListener("keydown", (event) => {
     if (event.key === "Tab") {
-      const focusableElements = $modal.querySelectorAll(
+      const focusableElements = $contactModal.querySelectorAll(
         "input, textarea, button"
       );
       const firstElement = focusableElements[0];
@@ -22,10 +36,4 @@ function displayModal() {
       }
     }
   });
-}
-
-function closeModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
 }

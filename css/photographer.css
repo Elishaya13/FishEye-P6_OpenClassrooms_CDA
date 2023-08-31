@@ -141,7 +141,8 @@ main {
 }
 
 /* Modal */
-#contact_modal {
+#contact_modal,
+#carousel_modal {
     display: none;
     position: fixed;
     z-index: 1;

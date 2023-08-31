@@ -78,4 +78,8 @@ class PhotographerPageTemplate {
     const Template = new Modal(this._photographerName);
     parent.appendChild(Template.render());
   }
+  createPhotographCarousel(parent) {
+    const Template = new Carousel(this._medias);
+    parent.appendChild(Template.createCarousel());
+  }
 }

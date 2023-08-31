@@ -10,6 +10,7 @@ class PhotographerPage {
     );
     this.$photographerMain = document.getElementById("main");
     this.$photographerModal = document.getElementById("contact_modal");
+    this.$photographCarousel = document.getElementById("carousel_modal");
 
     // Retrieves the ID parameter passed on the page
     this.params = new URL(document.location).searchParams;
@@ -51,6 +52,7 @@ class PhotographerPage {
       Template.createPhotographMediaContent(this.$photographerMediasWrapper);
       Template.createPhotographBoxAbout(this.$photographerMain);
       Template.createPhotographerModal(this.$photographerModal);
+      Template.createPhotographCarousel(this.$photographCarousel);
     } catch (error) {
       console.error("Error:", error);
       // Handle the error as needed

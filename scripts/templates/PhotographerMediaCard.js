@@ -47,7 +47,7 @@ class PhotographerMediaCard {
     const mediaCard = `
       <a class="photograph-media-img" role="button" title="${
         this._media.title
-      }" href="#">
+      }" href="#" onclick="displayCarousel(${this._media.id})">
       ${
         this._media.image && this._media.image !== ""
           ? `<img src="${this._media.image}" alt="${this._media.title}"></img>`

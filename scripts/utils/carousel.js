@@ -1,9 +1,10 @@
-function displayCarousel(image) {
+function displayCarousel(href, parent) {
   const $carouselWrapper = document.getElementById("carousel_modal");
   $carouselWrapper.style.display = "block";
   document.body.classList.add("modal-open");
-  const imageId = image;
-  console.log(imageId);
+
+  const carousel = new Carousel(href);
+  parent.appendChild(carousel.render());
 }
 
 function closeCarousel() {

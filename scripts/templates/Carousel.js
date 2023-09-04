@@ -1,30 +1,60 @@
 class Carousel {
-  constructor(media) {
-    this.media = media;
-    this.$carouselWrapper = document.createElement("div");
-    this.$carouselWrapper.classList.add("carousel");
-    this.images = [];
-  }
-  createCarousel() {
-    console.log(this.media);
-    const $carousel = `
-    <div>
-        <img></img>
-    </div>  
+  constructor(url) {
+    this.url = url;
+    this.$wrapper = document.querySelector(".carousel_wrapper");
 
-        
-   
-    <button onclick="closeCarousel()">Close</button>
-     `;
-    this.$carouselWrapper.innerHTML = $carousel;
-    return this.$carouselWrapper;
+    if (!this.$wrapper) {
+      this.$wrapper = document.createElement("div");
+      this.$wrapper.classList.add("carousel_wrapper");
+    }
+  }
+  render() {
+    const $carouselElements = `
+        <div class="carousel_content">
+          <button class="carousel_close" onclick="closeCarousel()" aria-label="Fermer">
+            <span class="sr-only">Fermer</span>
+          </button>        
+          <button class="carousel_next">
+            <span class="sr-only">Suivante</span>
+          </button>
+          <button class="carousel_prev">
+            <span class="sr-only">Précedente</span>      
+          </button>
+          <div class="carousel_media_container">
+            ${
+              this.url.endsWith(".mp4")
+                ? `
+                <video controls>
+                  <source src="${this.url}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              `
+                : `
+                <img src="${this.url}" alt="">
+              `
+            }
+            <h3> blablablatitre</h3>
+          </div>
+          
+        </div> 
+      `;
+
+    this.$wrapper.innerHTML = $carouselElements;
+
+    return this.$wrapper;
+  }
+
+  showPreviousImage() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.showImage(this.currentIndex);
+    }
+  }
+
+  showNextImage() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.currentIndex++;
+      this.showImage(this.currentIndex);
+    }
   }
 }
-// Recois un tableau d'images
-// Pour chaque image recue , créer une vue de l'image dans un div
-// affiche le div avec l'elementImage[0]
-
-// function sur Bouton pour voir l'image precedente ou prochaine
-// index du tableau -1 ou +1
-
-// Le carrousel recuperera l'id de l'image clické // faire le lien sur la source // et devra enregistré cette image en 1er index [0]

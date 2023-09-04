@@ -12,9 +12,7 @@ class PhotographerPageTemplate {
     this._photographer = photographer;
     this._medias = medias;
     this._photographerName = photographerName;
-
     this.$countDisplay = null;
-
     // Total Number of Likes
     this.likes = this._medias
       .map((media) => media.likes)
@@ -45,7 +43,8 @@ class PhotographerPageTemplate {
         const Template = new PhotographerMediaCard(
           media,
           this._photographerName,
-          this.counterLikes
+          this.counterLikes,
+          this._medias
         );
         parent.appendChild(Template.createMediaCard());
       });
@@ -79,7 +78,12 @@ class PhotographerPageTemplate {
     parent.appendChild(Template.render());
   }
   createPhotographCarousel(parent) {
-    const Template = new Carousel(this._medias);
-    parent.appendChild(Template.createCarousel());
+    const links = document.querySelectorAll(`a[href$=".jpg"], a[href$=".mp4"]`);
+    links.forEach((link) =>
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        displayCarousel(e.currentTarget.getAttribute("href"), parent);
+      })
+    );
   }
 }

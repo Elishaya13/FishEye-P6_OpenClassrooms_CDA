@@ -4,9 +4,9 @@
 class PhotographerPage {
   constructor() {
     // Targets DOM elements
-    this.$photographersWrapper = document.querySelector(".photograph-header");
+    this.$photographersWrapper = document.querySelector(".photograph_header");
     this.$photographerMediasWrapper = document.querySelector(
-      ".photograph-medias-section"
+      ".photograph_medias_section"
     );
     this.$photographerMain = document.getElementById("main");
     this.$photographerModal = document.getElementById("contact_modal");

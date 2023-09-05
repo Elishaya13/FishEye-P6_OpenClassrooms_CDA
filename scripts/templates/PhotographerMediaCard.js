@@ -14,10 +14,10 @@ class PhotographerMediaCard {
     this._likesCounter = LikesCounter;
 
     this.$mediaWrapper = document.createElement("article");
-    this.$mediaWrapper.classList.add("photograph-media-item");
+    this.$mediaWrapper.classList.add("photograph_media_item");
     this.$mediaWrapper.setAttribute(
       "data-testid",
-      `photograph-media-item-${this._id}`
+      `photograph_media_item-${this._id}`
     );
   }
 
@@ -45,7 +45,7 @@ class PhotographerMediaCard {
    */
   createMediaCard() {
     const mediaCard = `
-      <a class="photograph-media-img" role="button" title="${
+      <a class="photograph_media_img" role="button" title="${
         this._media.title
       }" href="${
       this._media.image && this._media.image !== ""
@@ -62,7 +62,7 @@ class PhotographerMediaCard {
       }     
       </a>
            
-        <div class="media-footer">
+        <div class="media_footer">
           <h3>${this._media.title}</h3>
           <span class= "like-count">${this._media.likes}</span>
           <span class="heart-icon">

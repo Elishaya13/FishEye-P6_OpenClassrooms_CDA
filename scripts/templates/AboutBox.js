@@ -6,7 +6,7 @@ class AboutBox {
 
   render() {
     const $photographAboutDiv = document.createElement("div");
-    $photographAboutDiv.classList.add("photograph-about");
+    $photographAboutDiv.classList.add("photograph_about");
 
     const photographAbout = `
     
@@ -14,7 +14,7 @@ class AboutBox {
     <span class="heart-icon" aria-label="Icone Likes">
     <i class="fas fa-heart"></i>
     </span>
-    <span arai-label="Prix par jour du photographe">${this._price}€ / jour  </span>
+    <span aria-label="Prix par jour du photographe">${this._price}€ / jour  </span>
   `;
     $photographAboutDiv.innerHTML = photographAbout;
 

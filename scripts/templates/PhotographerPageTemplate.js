@@ -77,13 +77,36 @@ class PhotographerPageTemplate {
     const Template = new Modal(this._photographerName);
     parent.appendChild(Template.render());
   }
+  /**
+   * Creates a photograph carousel from links found in the page.
+   *
+   * This method searches for links `<a>` ending with ".jpg" or ".mp4" in the page,
+   * extracts their URLs and titles, and adds event handlers to display the carousel
+   * when one of these links is clicked.
+   *
+   * @param {HTMLElement} parent - The parent element where the carousel will be displayed.
+   * @returns {void}
+   */
   createPhotographCarousel(parent) {
-    const links = document.querySelectorAll(`a[href$=".jpg"], a[href$=".mp4"]`);
-    links.forEach((link) =>
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        displayCarousel(e.currentTarget.getAttribute("href"), parent);
-      })
+    const links = Array.from(
+      document.querySelectorAll(`a[href$=".jpg"], a[href$=".mp4"]`)
     );
+    const gallery = [];
+    const galleryTitle = [];
+
+    links.forEach((link) => {
+      const href = link.getAttribute("href");
+      const title = link.getAttribute("title");
+
+      if (href && title) {
+        gallery.push(href);
+        galleryTitle.push(title);
+
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          displayCarousel(href, title, parent, gallery, galleryTitle);
+        });
+      }
+    });
   }
 }

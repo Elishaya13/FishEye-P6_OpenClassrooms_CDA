@@ -32,6 +32,11 @@ class PhotographerPageTemplate {
     parent.innerHTML = Template.render();
   }
 
+  createPhotographSortBox(parent) {
+    const Template = new SortBox();
+    parent.appendChild(Template.render());
+  }
+
   /**
    * Create and inject the photographer media content into the DOM.
    * @param {HTMLElement} parent - The parent element to which the content will be injected.

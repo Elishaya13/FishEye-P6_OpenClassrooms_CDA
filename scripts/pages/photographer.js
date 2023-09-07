@@ -49,6 +49,7 @@ class PhotographerPage {
 
       // Call the methods of the class for creating each visual part of the page
       Template.createPhotographHeaderContent(this.$photographersWrapper);
+      Template.createPhotographSortBox(this.$photographerMediasWrapper);
       Template.createPhotographMediaContent(this.$photographerMediasWrapper);
       Template.createPhotographBoxAbout(this.$photographerMain);
       Template.createPhotographerModal(this.$photographerModal);

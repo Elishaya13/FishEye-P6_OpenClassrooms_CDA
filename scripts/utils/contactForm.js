@@ -1,3 +1,8 @@
+/**
+ * Displays a modal dialog for contact form.
+ *
+ * @return {void}
+ */
 function displayModal() {
   const $modalWrapper = document.getElementById("contact_modal");
   $modalWrapper.style.display = "block";
@@ -16,14 +21,21 @@ function closeModal() {
   document.body.classList.remove("modal-open");
 }
 
+/**
+ * Sets up keyboard navigation within a contact modal form.
+ *
+ * @param {HTMLElement} form - The contact modal form element.
+ * @return {void}
+ */
 function focusContactModal(form) {
-  $contactModal = form;
+  const $contactModal = form;
 
   $contactModal.addEventListener("keydown", (event) => {
     if (event.key === "Tab") {
       const focusableElements = $contactModal.querySelectorAll(
         "input, textarea, button"
       );
+
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
 

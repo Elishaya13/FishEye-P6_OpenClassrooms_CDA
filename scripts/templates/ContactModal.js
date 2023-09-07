@@ -15,6 +15,8 @@ class Modal {
     $photographerModal.classList.add("modal");
     $photographerModal.setAttribute("tabindex", "-1");
     $photographerModal.setAttribute("role", "dialog");
+    $photographerModal.setAttribute("aria-modal", "true");
+    $photographerModal.setAttribute("aria-label", "formulaire de contact");
 
     const photographModalContent = `
     <header>

@@ -11,14 +11,14 @@ class Carousel {
     this.galleryTitle = galleryTitle;
 
     this.currentIndex = gallery.indexOf(url);
-    this.onKeyUp = this.onKeyUp.bind(this);
 
     this.$wrapper = document.querySelector(".carousel_content");
-    document.addEventListener("keyup", this.onKeyUp);
+    document.addEventListener("keyup", onKeyUp);
 
     if (!this.$wrapper) {
       this.$wrapper = document.createElement("div");
       this.$wrapper.classList.add("carousel_content");
+      this.$wrapper.setAttribute("tabindex", "-1");
       this.$wrapper.setAttribute("role", "dialog");
       this.$wrapper.setAttribute("aria-modal", "true");
       this.$wrapper.setAttribute("aria-label", "vue rapprochée de l'image");
@@ -26,16 +26,15 @@ class Carousel {
   }
   render() {
     const $carouselElements = `
-        
-          <button class="carousel_close" onclick="closeCarousel()" aria-label="Fermer">
-            <span class="sr-only">Fermer</span>
-          </button>        
-          <button class="carousel_next" aria-label="Image suivante">
-            <span class="sr-only">Suivante</span>
-          </button>
-          <button class="carousel_prev" aria-label="Image précédente">
+          <button class="carousel_prev" aria-label="Image précédente" tabindex="0">
             <span class="sr-only">Précedente</span>      
-          </button>
+          </button>             
+          <button class="carousel_next" aria-label="Image suivante" tabindex="0">
+            <span class="sr-only">Suivante</span>
+          </button>    
+          <button class="carousel_close" onclick="closeCarousel()" aria-label="Fermer" tabindex="0">
+            <span class="sr-only">Fermer</span>
+          </button>          
           <div class="carousel_media_container">      
           </div>
           `;
@@ -86,11 +85,15 @@ class Carousel {
       if (url.endsWith(".mp4")) {
         const video = document.createElement("video");
         video.controls = true;
+        video.autoplay = false;
+
         const source = document.createElement("source");
         source.src = url;
         source.type = "video/mp4";
         video.appendChild(source);
         container.appendChild(video);
+        video.setAttribute("tabindex", "0");
+        // video.focus();
       } else {
         const image = document.createElement("img");
         image.src = url;
@@ -101,20 +104,6 @@ class Carousel {
       const titleMedia = document.createElement("h3");
       titleMedia.textContent = title;
       container.appendChild(titleMedia);
-    }
-  }
-  /**
-   * Handles the keyup event for the carousel.
-   * @param {KeyboardEvent} e
-   * @return {void}
-   */
-  onKeyUp(e) {
-    if (e.key === "Escape") {
-      closeCarousel();
-    } else if (e.key === "ArrowLeft") {
-      this.showPreviousImage(e);
-    } else if (e.key === "ArrowRight") {
-      this.showNextImage(e);
     }
   }
 }

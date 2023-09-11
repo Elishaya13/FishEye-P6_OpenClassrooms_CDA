@@ -4,7 +4,6 @@ main {
     max-width: 100%;
 }
 
-
 .photograph_header {
     background-color: var(--tertiaryColor);
     height: 300px;
@@ -52,7 +51,9 @@ main {
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 1.5em 0 1.5em 0
+    align-items: center;
+    margin: 1.5em 0 1.5em 0;
+    gap: 1em
 }
 
 .sort_box_container h4 {
@@ -61,7 +62,7 @@ main {
 }
 
 .custom_select {
-    width: 200px;
+    width: 170px;
     position: relative;
     font-family: Arial, sans-serif;
 }
@@ -75,8 +76,14 @@ main {
     left: -9999px;
 }
 
+.selected_container {
+    display: flex;
+    align-items: center;
+}
+
 .select_selected {
     background-color: var(--primaryColor);
+    width: 170px;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -88,18 +95,29 @@ main {
     outline: none;
 }
 
-.select_items {
-    width: 200px;
+.fa-chevron-down {
+    color: white;
+    background-color: var(--primaryColor);
+    font-size: var(--small);
     position: absolute;
+    right: 1em;
+
+}
+
+.select_items {
+    width: 170px;
+    position: absolute;
+    top: 2.1em;
     background-color: var(--primaryColor);
     color: white;
-    border-radius: 5px;
-    border: 1px solid #d4d4d4;
+    border-radius: 0 0 5px 5px;
     max-height: 150px;
     overflow-y: auto;
+    z-index: 10;
 }
 
 .select_items div {
+    width: 170px;
     padding: 10px 15px;
     cursor: pointer;
     user-select: none;
@@ -110,9 +128,20 @@ main {
     color: white;
 }
 
+.select_items .divider {
+    border: none;
+    border-top: 1px solid white;
+    margin: 5px 8%;
+}
+
 .select_hide {
     display: none;
 }
+
+/* .select_active {
+    background-color: var(--secondaryColor);
+    color: white;
+} */
 
 
 /* Medias section */
@@ -149,11 +178,16 @@ main {
     flex: 10;
 }
 
-.like-count,
-.heart-icon {
+.like-count {
     font-size: var(--small);
     color: var(--primaryColor);
     flex: 1;
+}
+
+.heart-icon {
+    font-size: var(--small);
+    color: var(--primaryColor);
+    flex: 0;
 }
 
 .heart-icon {
@@ -261,7 +295,6 @@ main {
     background-color: var(--secondaryColor);
     border: none;
     padding: 0;
-
 }
 
 .contact_close_button:hover,
@@ -318,8 +351,6 @@ form textarea {
     text-indent: 10px;
     border: none;
     border-radius: 5px;
-
-
 }
 
 form input {

@@ -15,10 +15,6 @@ class PhotographerMediaCard {
 
     this.$mediaWrapper = document.createElement("article");
     this.$mediaWrapper.classList.add("photograph_media_item");
-    this.$mediaWrapper.setAttribute(
-      "data-testid",
-      `photograph_media_item-${this._id}`
-    );
   }
 
   handleLikeButton() {
@@ -57,7 +53,7 @@ class PhotographerMediaCard {
         this._media.image && this._media.image !== ""
           ? `<img src="${this._media.image}" alt="${this._media.title}"></img>`
           : this._media.video
-          ? `<video src="${this._media.video}" type="video/mp4">Your browser does not support the video tag.</video>`
+          ? `<video src="${this._media.video}" type="video/mp4" aria-describedby="${this._media.title}">Your browser does not support the video tag.</video>`
           : ""
       }     
       </a>

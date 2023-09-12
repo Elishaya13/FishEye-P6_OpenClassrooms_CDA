@@ -56,9 +56,10 @@ main {
     gap: 1em
 }
 
-.sort_box_container h4 {
+.sort_box_container h3 {
     font-size: var(--small);
     font-weight: 700;
+    color: black;
 }
 
 .custom_select {
@@ -141,7 +142,6 @@ main {
 /* Medias section */
 
 .photograph_medias_section {
-    height: 300px;
     margin: 0 100px;
     display: flex;
     flex-wrap: wrap;
@@ -170,6 +170,9 @@ main {
 
 .media_footer h3 {
     flex: 10;
+    font-weight: 400;
+    font-size: 1.25em;
+
 }
 
 .like-count {

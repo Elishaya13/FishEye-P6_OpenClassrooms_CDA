@@ -22,7 +22,7 @@ class Modal {
     <header>
         <h2 id="contact-name">Contactez-moi <br> ${this._name}</h2>
         <button class="contact_close_button" aria-label="Fermer le formulaire de contact" data-testid="modal_button_close" onclick="closeModal()" >
-          <img src="assets/icons/close.svg" alt="Fermer" />
+          <img src="assets/icons/close.svg" alt="close modal"/>
           <span class="sr-only">Fermer</span>
         </button> 
     </header>

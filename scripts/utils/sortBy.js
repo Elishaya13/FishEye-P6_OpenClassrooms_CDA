@@ -1,37 +1,44 @@
-function sortByLikes(medias) {
-  let arr = medias;
+function sortBy(selectValue, medias) {
+  let arr = medias.slice();
 
-  arr.sort((a, b) => {
-    return b.likes - a.likes;
-  });
+  switch (selectValue) {
+    case "Popularité":
+      arr.sort((a, b) => b.likes - a.likes);
+      break;
+    case "Date":
+      arr.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateA - dateB;
+      });
+      break;
+    case "Titre":
+      arr.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    default:
+      break;
+  }
+
+  return arr;
 }
 
-function sortByTitle(medias) {
-  let arr = medias;
-
-  arr.sort((a, b) => {
-    return a.title.localeCompare(b.title);
-  });
-}
-
-function sortByDate(medias) {
-  let arr = medias;
-
-  arr.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-
-    return dateA - dateB;
-  });
-}
+/**
+ * Handler for the select element's change event.
+ * @param {HTMLSelectElement} selectElement - The select element provoking the event.
+ * @param {PhotographerPageTemplate} instancePhotograph - An instance of PhotographerPageTemplate.
+ */
 function onSelectChange(selectElement, instancePhotograph) {
   const selectedValue = selectElement.value;
-  let $parent = document.querySelector(".photograph_medias_section");
+  let $parentContainer = document.querySelector(".photograph_medias_section");
   let $articles = document.querySelectorAll(".photograph_media_item");
 
+  // Remove all existing articles from the media section
   $articles.forEach((article) => {
     article.remove();
   });
-
-  instancePhotograph.createPhotographMediaContent($parent, selectedValue);
+  // Creates new articles based on the selection
+  instancePhotograph.createPhotographMediaContent(
+    $parentContainer,
+    selectedValue
+  );
 }

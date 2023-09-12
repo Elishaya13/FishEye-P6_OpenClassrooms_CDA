@@ -21,8 +21,6 @@ class PhotographerPageTemplate {
     // Observable & Observer
     this.counterLikes = new LikesCounter(this.likes);
     this.displayLikes = null;
-
-    this.selectValue = "Popularité";
   }
 
   /**
@@ -51,15 +49,10 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographMediaContent(parent, selectValue) {
-    if (selectValue === "Popularité") {
-      sortByLikes(this._medias);
-    } else if (selectValue === "Date") {
-      sortByDate(this._medias);
-    } else if (selectValue === "Titre") {
-      sortByTitle(this._medias);
-    }
+    const sortedMedias = sortBy(selectValue, this._medias);
+    const $parentContainer = document.getElementById("carousel_modal");
 
-    this._medias
+    sortedMedias
       .map((media) => new Media(media, this._photographerName))
       .forEach((media) => {
         const Template = new PhotographerMediaCard(
@@ -70,6 +63,8 @@ class PhotographerPageTemplate {
         );
         parent.appendChild(Template.createMediaCard());
       });
+
+    this.createPhotographCarousel($parentContainer);
   }
 
   /**

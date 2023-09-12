@@ -14,7 +14,7 @@ class SortBox {
 
   getSortBoxHTML() {
     return ` 
-        <h4> Trier par </h4>
+        <h3> Trier par </h3>
         <div class="custom_select">
           <div id="sort-instructions" class="sr-only">
           Sélectionnez une option pour trier les éléments de la galerie.

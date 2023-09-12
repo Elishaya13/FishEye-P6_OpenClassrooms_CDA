@@ -9,12 +9,12 @@ class PhotographerPageTemplate {
    * @param {string} photographerName - The name of the photographer.
    */
   constructor(photographer, medias, photographerName) {
-    this._photographer = photographer;
-    this._medias = medias;
-    this._photographerName = photographerName;
+    this.photographer = photographer;
+    this.medias = medias;
+    this.photographerName = photographerName;
     this.$countDisplay = null;
     // Total Number of Likes
-    this.likes = this._medias
+    this.likes = this.medias
       .map((media) => media.likes)
       .reduce((a, b) => a + b, 0);
 
@@ -28,7 +28,7 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographHeaderContent(parent) {
-    const Template = new PhotographerHeader(this._photographer);
+    const Template = new PhotographerHeader(this.photographer);
     parent.innerHTML = Template.render();
   }
 
@@ -49,17 +49,17 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographMediaContent(parent, selectValue) {
-    const sortedMedias = sortBy(selectValue, this._medias);
+    const sortedMedias = sortBy(selectValue, this.medias);
     const $parentContainer = document.getElementById("carousel_modal");
 
     sortedMedias
-      .map((media) => new Media(media, this._photographerName))
+      .map((media) => new Media(media, this.photographerName))
       .forEach((media) => {
         const Template = new PhotographerMediaCard(
           media,
-          this._photographerName,
+          this.photographerName,
           this.counterLikes,
-          this._medias
+          this.medias
         );
         parent.appendChild(Template.createMediaCard());
       });
@@ -72,7 +72,7 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographBoxAbout(parent) {
-    const Template = new AboutBox(this.likes, this._photographer.price);
+    const Template = new AboutBox(this.likes, this.photographer.price);
     const renderedTemplate = Template.render();
     parent.appendChild(renderedTemplate);
 
@@ -91,7 +91,7 @@ class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the modal content will be injected.
    */
   createPhotographerModal(parent) {
-    const Template = new Modal(this._photographerName);
+    const Template = new Modal(this.photographerName);
     parent.appendChild(Template.render());
   }
   /**

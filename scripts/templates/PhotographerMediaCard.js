@@ -8,10 +8,10 @@ class PhotographerMediaCard {
    * @param {string} photographName - The name of the photographer.
    */
   constructor(media, photographName, LikesCounter) {
-    this._photographName = photographName;
-    this._media = media;
-    this._count = media.likes;
-    this._likesCounter = LikesCounter;
+    this.photographName = photographName;
+    this.media = media;
+    this.count = media.likes;
+    this.likesCounter = LikesCounter;
 
     this.$mediaWrapper = document.createElement("article");
     this.$mediaWrapper.classList.add("photograph_media_item");
@@ -24,14 +24,14 @@ class PhotographerMediaCard {
     $heartIcon.addEventListener("click", () => {
       if ($heartIcon.classList.contains("liked")) {
         $heartIcon.classList.remove("liked");
-        this._count--;
-        this._likesCounter.notifyObservers("DEC");
+        this.count--;
+        this.likesCounter.notifyObservers("DEC");
       } else {
         $heartIcon.classList.add("liked");
-        this._count++;
-        this._likesCounter.notifyObservers("INC");
+        this.count++;
+        this.likesCounter.notifyObservers("INC");
       }
-      $likeCount.textContent = this._count;
+      $likeCount.textContent = this.count;
     });
   }
 
@@ -42,26 +42,26 @@ class PhotographerMediaCard {
   createMediaCard() {
     const mediaCard = `
       <a class="photograph_media_img" role="button" title="${
-        this._media.title
+        this.media.title
       }" href="${
-      this._media.image && this._media.image !== ""
-        ? this._media.image
-        : this._media.video
+      this.media.image && this.media.image !== ""
+        ? this.media.image
+        : this.media.video
     }" >
     
       ${
-        this._media.image && this._media.image !== ""
-          ? `<img src="${this._media.image}" alt="${this._media.title}"></img>`
-          : this._media.video
-          ? `<video src="${this._media.video}" type="video/mp4" aria-describedby="${this._media.title}">Your browser does not support the video tag.</video>`
+        this.media.image && this.media.image !== ""
+          ? `<img src="${this.media.image}" alt="${this.media.title}"></img>`
+          : this.media.video
+          ? `<video src="${this.media.video}" type="video/mp4" aria-describedby="${this.media.title}">Your browser does not support the video tag.</video>`
           : ""
       }     
       </a>
            
         <div class="media_footer">
-          <h3>${this._media.title}</h3>
+          <h3>${this.media.title}</h3>
           <span class= "like-count" aria-label="likes">${
-            this._media.likes
+            this.media.likes
           }</span>
           <span class="heart-icon">
             <i class="fas fa-heart"></i>

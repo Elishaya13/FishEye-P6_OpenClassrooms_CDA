@@ -3,7 +3,7 @@
  */
 class Modal {
   constructor(photographerName) {
-    this._name = photographerName;
+    this.name = photographerName;
   }
 
   /**
@@ -20,7 +20,7 @@ class Modal {
 
     const photographModalContent = `
     <header>
-        <h2 id="contact-name">Contactez-moi <br> ${this._name}</h2>
+        <h2 id="contact-name">Contactez-moi <br> ${this.name}</h2>
         <button class="contact_close_button" aria-label="Fermer le formulaire de contact" data-testid="modal_button_close" onclick="closeModal()" >
           <img src="assets/icons/close.svg" alt="close modal"/>
           <span class="sr-only">Fermer</span>
@@ -68,7 +68,7 @@ class Modal {
       console.log("Email:", emailValue);
       console.log("Message:", messageValue);
 
-      alert(`votre message : "${messageValue}" est envoyé à ${this._name}!`);
+      alert(`votre message : "${messageValue}" est envoyé à ${this.name}!`);
       $form.reset();
       closeModal();
     } else {

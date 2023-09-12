@@ -9,7 +9,7 @@ class Api {
    * @param {string} url  The base URL for API requests.
    */
   constructor(url) {
-    this._url = url;
+    this.url = url;
   }
 
   /**
@@ -19,7 +19,7 @@ class Api {
    * @throws {Error} Throws an error if the request fails.
    */
   async get() {
-    return fetch(this._url)
+    return fetch(this.url)
       .then((res) => res.json())
       .catch((err) => console.log("An error occurs", err));
   }

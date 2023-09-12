@@ -21,6 +21,8 @@ class PhotographerPageTemplate {
     // Observable & Observer
     this.counterLikes = new LikesCounter(this.likes);
     this.displayLikes = null;
+
+    this.selectValue = "Popularité";
   }
 
   /**
@@ -32,16 +34,31 @@ class PhotographerPageTemplate {
     parent.innerHTML = Template.render();
   }
 
-  createPhotographSortBox(parent) {
-    const Template = new SortBox();
-    parent.appendChild(Template.render());
+  /**
+   * Creates a photograph sort box and appends it to a parent element.
+   *
+   * @param {HTMLElement} parent - The parent element to which the sort box will be appended.
+   * @param {Photograph} instancePhotograph - Instance of the PhotographPageTemplate class.
+   */
+  createPhotographSortBox(parent, instancePhotograph) {
+    const Template = new SortBox(instancePhotograph);
+    const sortBoxElement = Template.render();
+    parent.appendChild(sortBoxElement);
   }
 
   /**
    * Create and inject the photographer media content into the DOM.
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
-  createPhotographMediaContent(parent) {
+  createPhotographMediaContent(parent, selectValue) {
+    if (selectValue === "Popularité") {
+      sortByLikes(this._medias);
+    } else if (selectValue === "Date") {
+      sortByDate(this._medias);
+    } else if (selectValue === "Titre") {
+      sortByTitle(this._medias);
+    }
+
     this._medias
       .map((media) => new Media(media, this._photographerName))
       .forEach((media) => {

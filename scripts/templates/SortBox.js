@@ -1,7 +1,9 @@
 class SortBox {
-  constructor() {
+  constructor(medias, instancePhotograph) {
     this.$wrapper = document.createElement("div");
     this.$wrapper.classList.add("sort_box_container");
+    this.medias = medias;
+    this.instancePhotograph = instancePhotograph;
   }
 
   render() {
@@ -14,23 +16,26 @@ class SortBox {
     return ` 
         <h4> Trier par </h4>
         <div class="custom_select">
-            <select class="focusable_select" tabindex="0">
-                <option value="0">Popularité</option>                
-                <option value="1">Date</option>
-                <option value="2">Titre</option>
+          <div id="sort-instructions" class="sr-only">
+          Sélectionnez une option pour trier les éléments de la galerie.
+          </div>
+            <select class="focusable_select" tabindex="0" onChange="onSelectChange(this.value, this.instancePhotograph)" aria-label="Trier par" aria-describedby="sort-instructions">
+                <option value="Popularité">Popularité</option>                
+                <option value="Date">Date</option>
+                <option value="Titre">Titre</option>
             </select>
             <div class="selected_container">
               <div class="select_selected">           
               </div>
               <span class="fa-solid fa-chevron-down"></span>
             </div>            
-            <div class="select_items select_hide">
+            <div class="select_items select_hide" role="listbox" aria-label="Options de tri"> 
               <hr class="divider">
-              <div>Popularité</div>
+              <div role="option">Popularité</div>
               <hr class="divider">
-              <div>Date</div>
+              <div role="option">Date</div>
               <hr class="divider">
-              <div>Titre</div>            
+              <div role="option">Titre</div>            
             </div>
         </div>        
     `;
@@ -96,10 +101,13 @@ class SortBox {
 
     for (let i = 0; i < options.length; i++) {
       options[i].addEventListener("click", () => {
-        selectedDiv.innerHTML = options[i].innerHTML;
+        const newValue = options[i].innerHTML;
+        selectedDiv.innerHTML = newValue;
+        select.value = newValue;
         hideSelectItems();
         updateSelectItemsVisibility();
         updateDividersVisibility();
+        onSelectChange(select, this.medias);
       });
     }
 
@@ -133,6 +141,7 @@ class SortBox {
           select.value = select.options[select.selectedIndex].innerHTML;
           spanIcon.classList.remove("fa-rotate-180");
           hideSelectItems();
+          onSelectChange(select, this.medias);
         }
 
         updateSelectItemsVisibility();

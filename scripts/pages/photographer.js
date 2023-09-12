@@ -36,7 +36,7 @@ class PhotographerPage {
 
       if (!photographerData) {
         console.error("Photographer data not available");
-        return; // Exit the function or handle the error as needed
+        return;
       }
 
       const photographerName = photographerData.name;
@@ -46,17 +46,22 @@ class PhotographerPage {
         photographerDataMedia,
         photographerName
       );
-
       // Call the methods of the class for creating each visual part of the page
       Template.createPhotographHeaderContent(this.$photographersWrapper);
-      Template.createPhotographSortBox(this.$photographerMediasWrapper);
-      Template.createPhotographMediaContent(this.$photographerMediasWrapper);
+      Template.createPhotographSortBox(
+        this.$photographerMediasWrapper,
+        Template
+      );
+
+      Template.createPhotographMediaContent(
+        this.$photographerMediasWrapper,
+        "Popularité"
+      );
       Template.createPhotographBoxAbout(this.$photographerMain);
       Template.createPhotographerModal(this.$photographerModal);
       Template.createPhotographCarousel(this.$photographCarousel);
     } catch (error) {
       console.error("Error:", error);
-      // Handle the error as needed
     }
   }
 }

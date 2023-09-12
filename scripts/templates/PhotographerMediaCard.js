@@ -64,7 +64,9 @@ class PhotographerMediaCard {
            
         <div class="media_footer">
           <h3>${this._media.title}</h3>
-          <span class= "like-count">${this._media.likes}</span>
+          <span class= "like-count" aria-label="likes">${
+            this._media.likes
+          }</span>
           <span class="heart-icon">
             <i class="fas fa-heart"></i>
           </span>         

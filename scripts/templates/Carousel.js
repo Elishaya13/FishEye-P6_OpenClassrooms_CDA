@@ -93,7 +93,6 @@ class Carousel {
         video.appendChild(source);
         container.appendChild(video);
         video.setAttribute("tabindex", "0");
-        // video.focus();
       } else {
         const image = document.createElement("img");
         image.src = url;

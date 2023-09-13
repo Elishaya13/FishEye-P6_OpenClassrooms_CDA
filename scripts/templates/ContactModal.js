@@ -21,25 +21,25 @@ class Modal {
     const photographModalContent = `
     <header>
         <h2 id="contact-name">Contactez-moi <br> ${this.name}</h2>
-        <button class="contact_close_button" aria-label="Fermer le formulaire de contact" data-testid="modal_button_close" onclick="closeModal()" >
-          <img src="assets/icons/close.svg" alt="close modal"/>
-          <span class="sr-only">Fermer</span>
+        <button class="contact_close_button" role="button" aria-label=""Bouton de fermeture du formulaire de contact" data-testid="modal_button_close" onclick="closeModal()" >
+          <img src="assets/icons/close.svg" alt="Fermer"/>
+          <span class="sr-only">Fermer le formulaire de contact</span>
         </button> 
     </header>
       <form id="myForm" action="#" method="post">
           <label id="label-prenom" for="prenom" data-testid="prenom-label">Prénom</label>
-          <input type="text" id="prenom" name="prenom" required aria-required="true" aria-labelledby="label-prenom" placeholder="Votre prénom">
+          <input type="text" id="prenom" name="prenom" required aria-required="true" aria-labelledby="label-prenom" placeholder="Veuillez saisir votre prénom">
           
           <label id="label-nom" for="nom" data-testid="nom-label">Nom</label>
-          <input type="text" id="nom" name="nom" required aria-required="true" aria-labelledby="label-nom" placeholder="Votre nom">
+          <input type="text" id="nom" name="nom" required aria-required="true" aria-labelledby="label-nom" placeholder="Veuillez saisir votre nom">
           
           <label id="label-email" for="email" data-testid="email-label">Email</label>
-          <input type="email" id="email" name="email" required aria-required="true" aria-labelledby="label-email" placeholder="ex: marceldupond@gmail.com">
+          <input type="email" id="email" name="email" required aria-required="true" aria-labelledby="label-email" placeholder=" Veuillez saisir votre email, exemple: marceldupond@gmail.com">
           
           <label id="label-message" for="message" data-testid="message-label">Votre Message</label>
-          <textarea id="message" name="message" required aria-required="true" aria-labelledby="label-message" placeholder="Votre message"></textarea>
+          <textarea id="message" name="message" required aria-required="true" aria-labelledby="label-message" placeholder="Veuillez saisir votre message"></textarea>
           
-          <button class="contact_button send_button" aria-label="Envoyer le formulaire">Envoyer</button>
+          <button class="contact_button send_button" aria-label="Bouton envoyer le formulaire">Envoyer</button>
       </form>
    
     `;

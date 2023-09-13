@@ -30,11 +30,11 @@ class SortBox {
               <span class="fa-solid fa-chevron-down"></span>
             </div>            
             <div class="select_items select_hide" role="listbox" aria-label="Options de tri"> 
-              <hr class="divider">
+              <hr class="divider" aria-hidden="true">
               <div role="option">Popularité</div>
-              <hr class="divider">
+              <hr class="divider" aria-hidden="true">
               <div role="option">Date</div>
-              <hr class="divider">
+              <hr class="divider" aria-hidden="true">
               <div role="option">Titre</div>            
             </div>
         </div>        

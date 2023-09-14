@@ -4,6 +4,7 @@ class SortBox {
     this.$wrapper.classList.add("sort_box_container");
     this.medias = medias;
     this.instancePhotograph = instancePhotograph;
+    this.sortedButtons = ["Popularité", "Date", "Titre"];
   }
 
   render() {
@@ -15,138 +16,193 @@ class SortBox {
   getSortBoxHTML() {
     return ` 
         <h3> Trier par </h3>
-        <div class="custom_select">
-          <div id="sort-instructions" class="sr-only">
-          Sélectionnez une option pour trier les éléments de la galerie.
-          </div>
-            <select class="focusable_select" tabindex="0" onChange="onSelectChange(this.value, this.instancePhotograph)" aria-label="Trier par" aria-describedby="sort-instructions">
-                <option value="Popularité">Popularité</option>                
-                <option value="Date">Date</option>
-                <option value="Titre">Titre</option>
-            </select>
-            <div class="selected_container">
-              <div class="select_selected">           
-              </div>
-              <span class="fa-solid fa-chevron-down"></span>
-            </div>            
-            <div class="select_items select_hide" role="listbox" aria-label="Options de tri"> 
-              <hr class="divider" aria-hidden="true">
-              <div role="option">Popularité</div>
-              <hr class="divider" aria-hidden="true">
-              <div role="option">Date</div>
-              <hr class="divider" aria-hidden="true">
-              <div role="option">Titre</div>            
+       
+        <div class="custom_select" role="menu" aria-label="Options de tri">
+            <button class="select_item_selected" tabindex="0" style="display:block" aria-haspopup="true">
+            Popularité
+            <span class="fa-solid fa-chevron-down"></span>
+             </button>
+            <div class="select_items_menu" style="display:none">
+                <button class="select_item" tabindex="0" role="menuitem" aria-label="Trier par popularité">
+                    Popularité
+                    <span class="fa-solid fa-chevron-down"></span>
+                </button>
+                <button class="select_item" tabindex="0"  role="menuitem" aria-label="Trier par date">                                      
+                    Date
+                    <span class="fa-solid fa-chevron-down"></span>                                
+                </button>
+                <button class="select_item" tabindex="0"  role="menuitem" aria-label="Trier par titre">
+                    Titre
+                    <span class="fa-solid fa-chevron-down"></span>               
+                </button>
             </div>
         </div>        
     `;
   }
-  setupCustomSelect() {
-    const select = this.$wrapper.querySelector(".custom_select select");
-    const selectedDiv = this.$wrapper.querySelector(".select_selected");
-    const selectItems = this.$wrapper.querySelector(".select_items");
-    const options = this.$wrapper.querySelectorAll(".select_items div");
-    const spanIcon = this.$wrapper.querySelector(".fa-solid");
 
-    selectedDiv.innerHTML = options[0].innerHTML;
+  /**
+   * Reorders the select items in the menu based on the selected text.
+   *
+   * @param {string} selectedText - The text of the selected item.
+   */
+  reorderSelectItems(selectedText) {
+    const $selectMenu = this.$wrapper.querySelector(".select_items_menu");
+    const $selectItems = $selectMenu.querySelectorAll(".select_item");
+
+    const newOrder = this.sortedButtons.slice();
+
+    // Put the selected item at the top of the list
+    const selectedIndex = newOrder.indexOf(selectedText);
+    if (selectedIndex !== -1) {
+      newOrder.splice(selectedIndex, 1);
+      newOrder.unshift(selectedText);
+    }
+
+    $selectMenu.innerHTML = "";
+    newOrder.forEach((text) => {
+      const button = Array.from($selectItems).find(
+        (item) => item.textContent.trim() === text
+      );
+      if (button) {
+        $selectMenu.appendChild(button);
+      }
+    });
+  }
+
+  setupCustomSelect() {
+    const $selectedButton = this.$wrapper.querySelector(
+      ".select_item_selected"
+    );
+    const $selectMenu = this.$wrapper.querySelector(".select_items_menu");
+    const $selectItems = $selectMenu.querySelectorAll(".select_item");
 
     const toggleSelectItems = () => {
-      selectItems.classList.toggle("select_hide");
-      selectItems.classList.toggle("open");
-      spanIcon.classList.toggle("fa-rotate-180");
-    };
+      const $selectMenu = this.$wrapper.querySelector(".select_items_menu");
+      const $selectItems = $selectMenu.querySelectorAll(".select_item");
+      const $selectedButton = this.$wrapper.querySelector(
+        ".select_item_selected"
+      );
 
-    const showSelectItems = () => {
-      selectItems.classList.remove("select_hide");
-      spanIcon.classList.add("fa-rotate-180");
-    };
-    const hideSelectItems = () => {
-      selectItems.classList.add("select_hide");
-      selectItems.classList.remove("open");
-      spanIcon.classList.remove("fa-rotate-180");
-    };
+      // Hide all spans
+      const allSpans = $selectMenu.querySelectorAll(".fa-solid");
+      allSpans.forEach((span) => {
+        span.style.display = "none";
+      });
 
-    // Hide the div that contains the same content as the one displayed
-    const updateSelectItemsVisibility = () => {
-      const selectedContent = selectedDiv.innerHTML;
-      options.forEach((option) => {
-        if (option.innerHTML === selectedContent) {
-          option.style.display = "none";
-        } else {
-          option.style.display = "block";
+      if ($selectMenu.style.display === "none") {
+        // Display the first span when menu is open
+        const firstItemSpan = $selectItems[0].querySelector(".fa-solid");
+        if (firstItemSpan) {
+          firstItemSpan.style.display = "inline-block";
         }
-      });
-    };
 
-    function updateDividersVisibility() {
-      const dividers = selectItems.querySelectorAll(".divider");
+        $selectMenu.style.display = "block";
+        $selectedButton.style.display = "none";
 
-      dividers.forEach((divider) => {
-        const nextElement = divider.nextElementSibling;
-
-        if (nextElement && nextElement.tagName === "DIV") {
-          if (nextElement.style.display === "none") {
-            divider.style.display = "none";
-          } else {
-            divider.style.display = "block";
-          }
+        const $firstMenuItem = $selectMenu.querySelector(".select_item");
+        if ($firstMenuItem) {
+          $firstMenuItem.focus();
         }
-      });
-    }
-    updateSelectItemsVisibility();
-    updateDividersVisibility();
+        const $spanArrow = $selectMenu.querySelector(".fa-solid");
+        $spanArrow.classList.add("fa-rotate-180");
 
-    selectedDiv.addEventListener("click", toggleSelectItems);
-    select.addEventListener("focus", showSelectItems);
-    select.addEventListener("blur", hideSelectItems);
-
-    for (let i = 0; i < options.length; i++) {
-      options[i].addEventListener("click", () => {
-        const newValue = options[i].innerHTML;
-        selectedDiv.innerHTML = newValue;
-        select.value = newValue;
-        hideSelectItems();
-        updateSelectItemsVisibility();
-        updateDividersVisibility();
-        onSelectChange(select, this.medias);
-      });
-    }
-
-    // Adds a click event listener to the document to hide the custom select items
-    // when clicking outside of the custom select element.
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".custom_select")) {
-        hideSelectItems();
+        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("focusin", handleFocusIn);
+      } else {
+        $selectMenu.style.display = "none";
+        $selectedButton.style.display = "block";
       }
+    };
+
+    const closeMenu = () => {
+      $selectedButton.style.display = "block";
+      $selectMenu.style.display = "none";
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
+      }
+    };
+
+    /**
+     * Handles the event when a click occurs outside the select menu, closing the menu if necessary.
+     *
+     * @param {MouseEvent} event - The mouse event object.
+     */
+    const handleOutsideClick = (event) => {
+      if (
+        !$selectMenu.contains(event.target) &&
+        !$selectedButton.contains(event.target)
+      ) {
+        closeMenu();
+        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("focusin", handleFocusIn);
+      }
+    };
+
+    /**
+     * Handles the event when focus is moved outside the select menu, closing the menu if necessary.
+     *
+     * @param {FocusEvent} event - The focus event object.
+     */
+    const handleFocusIn = (event) => {
+      if (
+        !$selectMenu.contains(event.target) &&
+        !$selectedButton.contains(event.target)
+      ) {
+        closeMenu();
+        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("focusin", handleFocusIn);
+      }
+    };
+
+    $selectedButton.addEventListener("click", toggleSelectItems);
+    document.body.addEventListener("keydown", handleEscapeKey);
+
+    // Update button text whith the new selected
+    $selectItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const text = item.textContent;
+        const newText = text.trim();
+
+        $selectedButton.textContent = newText;
+        const spanArrow = document.createElement("span");
+        spanArrow.className = "fa-solid fa-chevron-down";
+        $selectedButton.appendChild(spanArrow);
+
+        closeMenu();
+        onSelectChange(newText, this.medias);
+        this.reorderSelectItems(newText);
+      });
     });
 
-    // Keyboard navigation for accessibility
-    select.addEventListener("keydown", (e) => {
-      if (!selectItems.classList.contains("select_hide")) {
-        if (e.key === "ArrowUp" && select.selectedIndex > 0) {
-          select.selectedIndex -= 1;
-          selectedDiv.innerHTML = options[select.selectedIndex].innerHTML;
-          spanIcon.classList.add("fa-rotate-180");
-          e.preventDefault();
-        } else if (
-          e.key === "ArrowDown" &&
-          select.selectedIndex < options.length - 1
-        ) {
-          select.selectedIndex += 1;
-          selectedDiv.innerHTML = options[select.selectedIndex].innerHTML;
-          spanIcon.classList.add("fa-rotate-180");
-          e.preventDefault();
-        } else if (e.key === "Enter") {
-          selectedDiv.innerHTML =
-            select.options[select.selectedIndex].innerHTML;
-          select.value = select.options[select.selectedIndex].innerHTML;
-          spanIcon.classList.remove("fa-rotate-180");
-          hideSelectItems();
-          onSelectChange(select, this.medias);
-        }
+    /**
+     * Handles arrow key navigation within the select menu items.
+     *
+     * @param {KeyboardEvent} event - The keyboard event object.
+     */
+    const handleArrowKeys = (event) => {
+      if ($selectMenu.style.display === "block") {
+        const $selectItems = $selectMenu.querySelectorAll(".select_item");
+        const currentIndex = Array.from($selectItems).indexOf(
+          document.activeElement
+        );
 
-        updateSelectItemsVisibility();
-        updateDividersVisibility();
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          const nextIndex = (currentIndex + 1) % $selectItems.length;
+          $selectItems[nextIndex].focus();
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          const prevIndex =
+            (currentIndex - 1 + $selectItems.length) % $selectItems.length;
+          $selectItems[prevIndex].focus();
+        }
       }
-    });
+    };
+
+    document.addEventListener("keydown", handleArrowKeys);
   }
 }

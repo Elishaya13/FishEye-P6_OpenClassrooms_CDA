@@ -230,6 +230,14 @@ main {
     font-size: var(--medium);
 }
 
+.about_popularity_container {
+    flex: 6;
+}
+
+.about_price {
+    flex: 6;
+}
+
 /* */
 
 .contact_button {

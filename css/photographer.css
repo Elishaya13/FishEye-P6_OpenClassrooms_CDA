@@ -166,18 +166,18 @@ main {
     object-fit: cover;
 }
 
+/* footer of media */
+
 .media_footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-
 }
 
 .media_footer h3 {
     flex: 10;
     font-weight: 400;
     font-size: 1.25em;
-
 }
 
 .like-count {
@@ -188,12 +188,8 @@ main {
 
 .heart-icon {
     font-size: var(--small);
-    color: var(--primaryColor);
-    flex: 0;
-}
-
-.heart-icon {
     color: var(--secondaryColor);
+    flex: 0;
 }
 
 .liked {
@@ -226,6 +222,7 @@ main {
     font-size: var(--medium);
 }
 
+/* */
 
 .contact_button {
     font-size: 20px;

@@ -212,6 +212,7 @@ main {
 
 .photograph_about {
     background-color: var(--secondaryColor);
+    /* background-color: #DB8876; */
     width: 375px;
     height: 60px;
     position: fixed;
@@ -223,6 +224,7 @@ main {
     gap: 10px;
     padding: 0 20px 0 20px;
     margin-right: 2em;
+    border-radius: 5px;
 
 }
 

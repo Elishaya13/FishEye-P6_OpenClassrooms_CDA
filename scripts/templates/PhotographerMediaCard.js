@@ -21,7 +21,7 @@ class PhotographerMediaCard {
     const $heartIcon = this.$mediaWrapper.querySelector(".heart-icon");
     const $likeCount = this.$mediaWrapper.querySelector(".like-count");
 
-    $heartIcon.addEventListener("click", () => {
+    const toggleLike = () => {
       if ($heartIcon.classList.contains("liked")) {
         $heartIcon.classList.remove("liked");
         this.count--;
@@ -32,6 +32,14 @@ class PhotographerMediaCard {
         this.likesCounter.notifyObservers("INC");
       }
       $likeCount.textContent = this.count;
+    };
+
+    $heartIcon.addEventListener("click", toggleLike);
+
+    $heartIcon.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        toggleLike();
+      }
     });
   }
 
@@ -41,7 +49,7 @@ class PhotographerMediaCard {
    */
   createMediaCard() {
     const mediaCard = `
-      <a class="photograph_media_img" role="button" title="${
+      <a class="photograph_media_img" role="link" aria-label="Afficher le média dans le caroussel" title="${
         this.media.title
       }" href="${
       this.media.image && this.media.image !== ""
@@ -56,16 +64,16 @@ class PhotographerMediaCard {
           ? `<video src="${this.media.video}" type="video/mp4" aria-describedby="${this.media.title}">Your browser does not support the video tag.</video>`
           : ""
       }     
-      </a>
+      </a>     
            
         <div class="media_footer">
           <h3>${this.media.title}</h3>
           <span class= "like-count" aria-label="likes">${
             this.media.likes
           }</span>
-          <span class="heart-icon">
+          <a class="heart-icon" tabindex="0" role="button" aria-label="Cliquez pour aimer cet élément">
             <i class="fas fa-heart"></i>
-          </span>         
+          </a>         
         </div>   
         <div class="footer"></div> 
 

@@ -28,7 +28,6 @@ function sortBy(selectValue, medias) {
  * @param {PhotographerPageTemplate} instancePhotograph - An instance of PhotographerPageTemplate.
  */
 function onSelectChange(selectElement, instancePhotograph) {
-  const selectedValue = selectElement.value;
   let $parentContainer = document.querySelector(".photograph_medias_section");
   let $articles = document.querySelectorAll(".photograph_media_item");
 
@@ -39,6 +38,6 @@ function onSelectChange(selectElement, instancePhotograph) {
   // Creates new articles based on the selection
   instancePhotograph.createPhotographMediaContent(
     $parentContainer,
-    selectedValue
+    selectElement
   );
 }

@@ -6,6 +6,7 @@
     --primaryColor: #901c1c;
     /* secondary #DB8876 / #D3573C */
     --secondaryColor: #D3573C;
+    --secondaryColorLight: #DB8876;
     --tertiaryColor: #FAFAFA;
     --tertiaryFontColor: #525252;
     --priceFontColor: #757575;
@@ -133,6 +134,4 @@ span {
     border-radius: 50%;
     object-fit: cover;
     overflow-clip-margin: unset;
-
-
 }

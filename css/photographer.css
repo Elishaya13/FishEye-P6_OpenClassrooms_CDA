@@ -120,6 +120,7 @@ main {
     color: white;
     border-radius: 5px;
     border: none;
+
 }
 
 .select_item,
@@ -134,9 +135,12 @@ main {
 
 .select_item:hover,
 .select_item:focus {
-    background-color: var(--secondaryColor);
-    color: white;
+    background-color: var(--secondaryColorLight);
+    color: black;
+    font-weight: 700;
 }
+
+
 
 /* Sorter menu divider */
 .select_item {
@@ -233,7 +237,7 @@ main {
 /* About box */
 
 .photograph_about {
-    background-color: var(--secondaryColor);
+    background-color: var(--secondaryColorLight);
     /* background-color: #DB8876; */
     width: 375px;
     height: 60px;
@@ -280,7 +284,8 @@ main {
 
 .contact_button:hover,
 .contact_button:focus {
-    background-color: var(--secondaryColor)
+    background-color: var(--secondaryColorLight);
+    color: black
 }
 
 /*** Modal ***/
@@ -301,7 +306,7 @@ main {
 
 .modal {
     border-radius: 5px;
-    background-color: var(--secondaryColor);
+    background-color: var(--secondaryColorLight);
     width: 42em;
     display: flex;
     flex-direction: column;
@@ -332,7 +337,7 @@ main {
 }
 
 .contact_close_button {
-    background-color: var(--secondaryColor);
+    background-color: var(--secondaryColorLight);
     border: none;
     padding: 0;
 }
@@ -342,6 +347,7 @@ main {
     outline: 2px solid #000;
     padding: 4px;
     margin: -4px;
+    color: black;
 
 }
 

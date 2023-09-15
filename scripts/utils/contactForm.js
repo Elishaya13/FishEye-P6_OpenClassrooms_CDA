@@ -13,12 +13,14 @@ function displayModal() {
     $contactModal.focus();
     focusContactModal($contactModal);
   }
+  $contactModal.addEventListener("keyup", onKeyUpContact);
 }
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
   document.body.classList.remove("modal-open");
+  document.removeEventListener("keyup", onKeyUpContact);
 }
 
 /**
@@ -48,4 +50,9 @@ function focusContactModal(form) {
       }
     }
   });
+}
+function onKeyUpContact(e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
 }

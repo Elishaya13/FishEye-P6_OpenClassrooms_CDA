@@ -7,9 +7,9 @@ main {
 
 .photograph_header {
     background-color: var(--tertiaryColor);
-    height: 300px;
+    height: 19.5em;
     margin: 0 100px;
-    padding: 0 3em 0 3em;
+    /* padding: 0 3em 0 3em; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,12 +20,23 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    flex: 4;
+    margin-left: 3em;
 
 }
+
+.photographer_button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 4;
+}
+
 
 .photographer_infos_container h1 {
     color: var(--secondaryColor);
     font-size: var(--large);
+    margin: 0;
 }
 
 .photographer_infos_container h2,
@@ -39,11 +50,20 @@ main {
 
 }
 
+.photographer_profil_container {
+    display: flex;
+    justify-content: flex-end;
+    flex: 4
+}
+
 .photographer_profil_container img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: 3em;
+    overflow-clip-margin: unset;
+
 }
 
 
@@ -152,7 +172,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 100px;
+
 }
 
 .photograph_media_item {
@@ -210,6 +230,8 @@ main {
     height: 130px;
 }
 
+/* About box */
+
 .photograph_about {
     background-color: var(--secondaryColor);
     /* background-color: #DB8876; */
@@ -224,7 +246,7 @@ main {
     gap: 10px;
     padding: 0 20px 0 20px;
     margin-right: 2em;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 
 }
 
@@ -241,10 +263,10 @@ main {
     flex: 6;
 }
 
-/* */
+/* --  */
 
 .contact_button {
-    font-size: 20px;
+    font-size: 1.20em;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -280,7 +302,7 @@ main {
 .modal {
     border-radius: 5px;
     background-color: var(--secondaryColor);
-    width: 50%;
+    width: 42em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

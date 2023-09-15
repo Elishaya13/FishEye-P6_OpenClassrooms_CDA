@@ -132,5 +132,7 @@ span {
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
+    overflow-clip-margin: unset;
+
 
 }

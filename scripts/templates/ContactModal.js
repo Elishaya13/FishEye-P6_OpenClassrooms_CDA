@@ -21,8 +21,7 @@ class Modal {
     const photographModalContent = `
     <header>
         <h2 id="contact-name">Contactez-moi <br> ${this.name}</h2>
-        <button class="contact_close_button" role="button" aria-label=""Bouton de fermeture du formulaire de contact" data-testid="modal_button_close" onclick="closeModal()" >
-          <img src="assets/icons/close.svg" alt="Fermer"/>
+        <button class="contact_close_button" role="button" aria-label="Cliquez pour fermer le formulaire de contact" data-testid="modal_button_close">        
           <span class="sr-only">Fermer le formulaire de contact</span>
         </button> 
     </header>
@@ -34,19 +33,23 @@ class Modal {
           <input type="text" id="nom" name="nom" required aria-required="true" aria-labelledby="label-nom" placeholder="Veuillez saisir votre nom">
           
           <label id="label-email" for="email" data-testid="email-label">Email</label>
-          <input type="email" id="email" name="email" required aria-required="true" aria-labelledby="label-email" placeholder=" Veuillez saisir votre email, exemple: marceldupond@gmail.com">
+          <input type="email" id="email" name="email" required aria-required="true" aria-labelledby="label-email" placeholder=" Veuillez saisir votre email">
           
-          <label id="label-message" for="message" data-testid="message-label">Votre Message</label>
+          <label id="label-message" for="message" data-testid="message-label">Votre message</label>
           <textarea id="message" name="message" required aria-required="true" aria-labelledby="label-message" placeholder="Veuillez saisir votre message"></textarea>
           
-          <button class="contact_button send_button" aria-label="Bouton envoyer le formulaire">Envoyer</button>
+          <button class="contact_button send_button" aria-label="Cliquez pour envoyer le formulaire">Envoyer</button>
       </form>
    
     `;
     $photographerModal.innerHTML = photographModalContent;
 
-    const $sendButton = $photographerModal.querySelector(".send_button");
-    $sendButton.addEventListener("click", this.handleFormSubmit.bind(this));
+    $photographerModal
+      .querySelector(".send_button")
+      .addEventListener("click", this.handleFormSubmit.bind(this));
+    $photographerModal
+      .querySelector(".contact_close_button")
+      .addEventListener("click", closeModal);
 
     return $photographerModal;
   }

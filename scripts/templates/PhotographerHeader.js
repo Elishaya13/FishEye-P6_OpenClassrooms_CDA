@@ -12,13 +12,12 @@ class PhotographerHeader {
         <p>${photographerData.tagline}</p>
       </div>  
       <div class="photographer_button_container">
-         <button class="contact_button" aria-labelledby="contact-name" onclick="displayModal()">Contactez-moi</button>
+         <button class="contact_button" aria-labelledby="contact-name" >Contactez-moi</button>
       </div>   
       <div class="photographer_profil_container" data-testid="photographer-profil-container">  
         <img          
               alt="${photographerData.name}"
-              src="${photographerData.portrait}"
-            
+              src="${photographerData.portrait}"            
           /> 
       </div>          
        `;

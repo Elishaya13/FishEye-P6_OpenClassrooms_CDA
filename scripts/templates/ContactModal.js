@@ -19,13 +19,13 @@ class Modal {
     $photographerModal.setAttribute("aria-label", "formulaire de contact");
 
     const photographModalContent = `
-    <header>
+    <div role"dialog" aria-labelledby="contact-name">
         <h2 id="contact-name">Contactez-moi <br> ${this.name}</h2>
         <button class="contact_close_button" role="button" aria-label="Cliquez pour fermer le formulaire de contact" data-testid="modal_button_close">        
           <span class="sr-only">Fermer le formulaire de contact</span>
         </button> 
-    </header>
-      <form id="myForm" action="#" method="post">
+    </div>
+    <form id="myForm" action="#" method="post">
           <label id="label-prenom" for="prenom" data-testid="prenom-label">Prénom</label>
           <input type="text" id="prenom" name="prenom" required aria-required="true" aria-labelledby="label-prenom" placeholder="Veuillez saisir votre prénom">
           

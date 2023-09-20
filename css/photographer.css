@@ -314,24 +314,21 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 35px;
+    padding: 10px 35px 35px 35px;
     margin: auto;
     margin-top: 3em;
     box-shadow: -5px 10px 30px 0px #00000040;
 }
 
-.modal header {
+.modal div {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: auto;
 }
 
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
+.modal div h2 {
     font-size: 64px;
     font-weight: normal;
     color: black;
@@ -343,6 +340,8 @@ main {
     width: 42px;
     height: 42px;
     z-index: 3;
+    cursor: pointer;
+    margin-top: 1em
 }
 
 .contact_close_button:hover,

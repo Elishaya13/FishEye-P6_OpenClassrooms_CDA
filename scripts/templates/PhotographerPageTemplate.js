@@ -13,6 +13,7 @@ class PhotographerPageTemplate {
     this.medias = medias;
     this.photographerName = photographerName;
     this.$countDisplay = null;
+
     // Total Number of Likes
     this.likes = this.medias
       .map((media) => media.likes)
@@ -30,6 +31,9 @@ class PhotographerPageTemplate {
   createPhotographHeaderContent(parent) {
     const Template = new PhotographerHeader(this.photographer);
     parent.innerHTML = Template.render();
+
+    const $contact_button = document.querySelector(".contact_button");
+    $contact_button.addEventListener("click", displayModal);
   }
 
   /**

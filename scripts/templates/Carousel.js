@@ -32,7 +32,7 @@ class Carousel {
           <button class="carousel_next" aria-label="Image suivante" tabindex="0">
             <span class="sr-only">Suivante</span>
           </button>    
-          <button class="carousel_close" onclick="closeCarousel()" aria-label="Fermer" tabindex="0">
+          <button class="carousel_close" aria-label="Fermer la vue rapprochée" tabindex="0">
             <span class="sr-only">Fermer</span>
           </button>          
           <div class="carousel_media_container">      
@@ -49,6 +49,10 @@ class Carousel {
     this.$wrapper
       .querySelector(".carousel_prev")
       .addEventListener("click", this.showPreviousImage.bind(this));
+
+    this.$wrapper
+      .querySelector(".carousel_close")
+      .addEventListener("click", closeCarousel);
 
     return this.$wrapper;
   }

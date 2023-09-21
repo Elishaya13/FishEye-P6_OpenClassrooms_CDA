@@ -1,4 +1,4 @@
-class Media {
+export class Media {
   constructor(data, photographerName) {
     this._id = data.id;
     this._photographerId = data.photographerId;
@@ -30,22 +30,22 @@ class Media {
   get image() {
     if (this._image) {
       // Get the first word (first name)
-      let photographerFirstName = this._photographerName.split(" ")[0];
+      let photographerFirstName = this._photographerName.split(' ')[0];
 
-      if (this._photographerName.includes("-")) {
+      if (this._photographerName.includes('-')) {
         // Replace the dash with a space
-        photographerFirstName = this._photographerName.replace("-", " ");
-        const nameParts = photographerFirstName.split(" ");
+        photographerFirstName = this._photographerName.replace('-', ' ');
+        const nameParts = photographerFirstName.split(' ');
         if (nameParts.length > 1) {
           // Take the first two words
-          photographerFirstName = nameParts.slice(0, 2).join(" ");
+          photographerFirstName = nameParts.slice(0, 2).join(' ');
         }
       }
 
       return `/assets/photographers/${photographerFirstName}/${this._image}`;
     }
 
-    return ""; // Return an empty string if _image doesn't exist
+    return ''; // Return an empty string if _image doesn't exist
   }
 
   get likes() {
@@ -63,21 +63,21 @@ class Media {
   get video() {
     if (this._video) {
       // Get the first word (first name)
-      let photographerFirstName = this._photographerName.split(" ")[0];
+      let photographerFirstName = this._photographerName.split(' ')[0];
 
-      if (this._photographerName.includes("-")) {
+      if (this._photographerName.includes('-')) {
         // Replace the dash with a space
-        photographerFirstName = this._photographerName.replace("-", " ");
-        const nameParts = photographerFirstName.split(" ");
+        photographerFirstName = this._photographerName.replace('-', ' ');
+        const nameParts = photographerFirstName.split(' ');
         if (nameParts.length > 1) {
           // Take the first two words
-          photographerFirstName = nameParts.slice(0, 2).join(" ");
+          photographerFirstName = nameParts.slice(0, 2).join(' ');
         }
       }
 
       return `/assets/photographers/${photographerFirstName}/${this._video}`;
     }
 
-    return ""; // Return an empty string if _video doesn't exist
+    return ''; // Return an empty string if _video doesn't exist
   }
 }

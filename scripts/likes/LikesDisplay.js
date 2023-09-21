@@ -1,7 +1,7 @@
 /**
  * Observer for updating and displaying likes count in the DOM.
  */
-class LikesDisplay {
+export class LikesDisplay {
   /**
    * Create a LikesDisplay observer.
    * @constructor
@@ -27,12 +27,12 @@ class LikesDisplay {
    * @throws {string} Throws an error if the action is unknown.
    */
   update(action) {
-    if (action === "INC") {
+    if (action === 'INC') {
       this.count += 1;
-    } else if (action === "DEC") {
+    } else if (action === 'DEC') {
       this.count -= 1;
     } else {
-      throw "Unknow action";
+      throw 'Unknow action';
     }
 
     // Update the displayed likes count in the DOM element

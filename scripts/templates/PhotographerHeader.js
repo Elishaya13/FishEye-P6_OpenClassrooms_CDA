@@ -1,4 +1,5 @@
-class PhotographerHeader {
+import { Photographer } from '../models/Photographer.js';
+export class PhotographerHeader {
   constructor(photographer) {
     this.photographer = photographer;
   }

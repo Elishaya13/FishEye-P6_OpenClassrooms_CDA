@@ -1,3 +1,5 @@
+import { Carousel } from '../templates/Carousel.js';
+
 let carouselInstance;
 
 /**
@@ -6,11 +8,11 @@ let carouselInstance;
  * @return {void}
  */
 function onKeyUp(e) {
-  if (e.key === "Escape") {
+  if (e.key === 'Escape') {
     closeCarousel();
-  } else if (e.key === "ArrowLeft") {
+  } else if (e.key === 'ArrowLeft') {
     carouselInstance.showPreviousImage(e);
-  } else if (e.key === "ArrowRight") {
+  } else if (e.key === 'ArrowRight') {
     carouselInstance.showNextImage(e);
   }
 }
@@ -26,14 +28,14 @@ function onKeyUp(e) {
  * @return {void}
  */
 function displayCarousel(href, title, parent, gallery, galleryTitle) {
-  const $carouselWrapper = document.getElementById("carousel_modal");
-  $carouselWrapper.style.display = "block";
-  document.body.classList.add("modal-open");
+  const $carouselWrapper = document.getElementById('carousel_modal');
+  $carouselWrapper.style.display = 'block';
+  document.body.classList.add('modal-open');
 
   carouselInstance = new Carousel(href, title, gallery, galleryTitle);
   parent.appendChild(carouselInstance.render());
 
-  const $modal = document.querySelector(".carousel_content");
+  const $modal = document.querySelector('.carousel_content');
 
   if ($modal) {
     $modal.focus();
@@ -42,10 +44,10 @@ function displayCarousel(href, title, parent, gallery, galleryTitle) {
 }
 
 function closeCarousel() {
-  const $carousel = document.getElementById("carousel_modal");
-  $carousel.style.display = "none";
-  document.body.classList.remove("modal-open");
-  document.removeEventListener("keyup", onKeyUp);
+  const $carousel = document.getElementById('carousel_modal');
+  $carousel.style.display = 'none';
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keyup', onKeyUp);
 }
 
 /**
@@ -57,9 +59,9 @@ function closeCarousel() {
 function focusCarouselModal(modal) {
   const $carouselModal = modal;
 
-  $carouselModal.addEventListener("keydown", (event) => {
-    if (event.key === "Tab") {
-      const focusableElements = $carouselModal.querySelectorAll("button");
+  $carouselModal.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      const focusableElements = $carouselModal.querySelectorAll('button');
       //const focusableVideo = document.querySelector("video[controls]");
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
@@ -78,3 +80,5 @@ function focusCarouselModal(modal) {
   //     videoElement.focus();
   //   }
 }
+
+export { onKeyUp, displayCarousel, closeCarousel, focusCarouselModal };

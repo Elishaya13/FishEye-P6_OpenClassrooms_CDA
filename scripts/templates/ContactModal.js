@@ -1,7 +1,8 @@
+import { closeModal } from '../utils/contactForm.js';
 /**
  * Represents a modal for contacting the photographer.
  */
-class Modal {
+export class Modal {
   constructor(photographerName) {
     this.name = photographerName;
   }
@@ -11,12 +12,12 @@ class Modal {
    * @returns {HTMLElement} The rendered modal element.
    */
   render() {
-    const $photographerModal = document.createElement("div");
-    $photographerModal.classList.add("modal");
-    $photographerModal.setAttribute("tabindex", "-1");
-    $photographerModal.setAttribute("role", "dialog");
-    $photographerModal.setAttribute("aria-modal", "true");
-    $photographerModal.setAttribute("aria-label", "formulaire de contact");
+    const $photographerModal = document.createElement('div');
+    $photographerModal.classList.add('modal');
+    $photographerModal.setAttribute('tabindex', '-1');
+    $photographerModal.setAttribute('role', 'dialog');
+    $photographerModal.setAttribute('aria-modal', 'true');
+    $photographerModal.setAttribute('aria-label', 'formulaire de contact');
 
     const photographModalContent = `
     <div role"dialog" aria-labelledby="contact-name">
@@ -45,11 +46,11 @@ class Modal {
     $photographerModal.innerHTML = photographModalContent;
 
     $photographerModal
-      .querySelector(".send_button")
-      .addEventListener("click", this.handleFormSubmit.bind(this));
+      .querySelector('.send_button')
+      .addEventListener('click', this.handleFormSubmit.bind(this));
     $photographerModal
-      .querySelector(".contact_close_button")
-      .addEventListener("click", closeModal);
+      .querySelector('.contact_close_button')
+      .addEventListener('click', closeModal);
 
     return $photographerModal;
   }
@@ -57,25 +58,25 @@ class Modal {
   handleFormSubmit(event) {
     event.preventDefault();
 
-    const $form = document.getElementById("myForm");
+    const $form = document.getElementById('myForm');
     // Retrieving field values
-    const prenomValue = document.querySelector("#prenom").value;
-    const nomValue = document.querySelector("#nom").value;
-    const emailValue = document.querySelector("#email").value;
-    const messageValue = document.querySelector("#message").value;
+    const prenomValue = document.querySelector('#prenom').value;
+    const nomValue = document.querySelector('#nom').value;
+    const emailValue = document.querySelector('#email').value;
+    const messageValue = document.querySelector('#message').value;
 
     if (prenomValue && nomValue && emailValue && messageValue) {
       // Displaying values ​​in the console
-      console.log("Prénom:", prenomValue);
-      console.log("Nom:", nomValue);
-      console.log("Email:", emailValue);
-      console.log("Message:", messageValue);
+      console.log('Prénom:', prenomValue);
+      console.log('Nom:', nomValue);
+      console.log('Email:', emailValue);
+      console.log('Message:', messageValue);
 
       alert(`votre message : "${messageValue}" est envoyé à ${this.name}!`);
       $form.reset();
       closeModal();
     } else {
-      alert("Veuillez remplir tous les champs");
+      alert('Veuillez remplir tous les champs');
     }
   }
 }

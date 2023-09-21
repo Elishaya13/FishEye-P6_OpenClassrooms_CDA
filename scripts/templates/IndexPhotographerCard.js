@@ -1,10 +1,10 @@
-class IndexPhotographerCard {
+export class IndexPhotographerCard {
   constructor(photographer) {
     this.photographer = photographer;
   }
 
   createPhotographerCard() {
-    const $wrapper = document.createElement("article");
+    const $wrapper = document.createElement('article');
 
     const photographerCard = `
       <a href=photographer.html?id=${this.photographer.id} aria-labelledby="${this.photographer.name}" data-testid="photographer-card-${this.photographer.id}">

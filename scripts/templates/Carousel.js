@@ -1,4 +1,5 @@
-class Carousel {
+import { onKeyUp, closeCarousel } from '../utils/carousel.js';
+export class Carousel {
   /**   *
    * @param {string} url Path of the media
    * @param {string} title Title of the media
@@ -12,16 +13,16 @@ class Carousel {
 
     this.currentIndex = gallery.indexOf(url);
 
-    this.$wrapper = document.querySelector(".carousel_content");
-    document.addEventListener("keyup", onKeyUp);
+    this.$wrapper = document.querySelector('.carousel_content');
+    document.addEventListener('keyup', onKeyUp);
 
     if (!this.$wrapper) {
-      this.$wrapper = document.createElement("div");
-      this.$wrapper.classList.add("carousel_content");
-      this.$wrapper.setAttribute("tabindex", "-1");
-      this.$wrapper.setAttribute("role", "dialog");
-      this.$wrapper.setAttribute("aria-modal", "true");
-      this.$wrapper.setAttribute("aria-label", "vue rapprochée de l'image");
+      this.$wrapper = document.createElement('div');
+      this.$wrapper.classList.add('carousel_content');
+      this.$wrapper.setAttribute('tabindex', '-1');
+      this.$wrapper.setAttribute('role', 'dialog');
+      this.$wrapper.setAttribute('aria-modal', 'true');
+      this.$wrapper.setAttribute('aria-label', "vue rapprochée de l'image");
     }
   }
   render() {
@@ -44,15 +45,15 @@ class Carousel {
     this.showImage(this.url, this.galleryTitle);
 
     this.$wrapper
-      .querySelector(".carousel_next")
-      .addEventListener("click", this.showNextImage.bind(this));
+      .querySelector('.carousel_next')
+      .addEventListener('click', this.showNextImage.bind(this));
     this.$wrapper
-      .querySelector(".carousel_prev")
-      .addEventListener("click", this.showPreviousImage.bind(this));
+      .querySelector('.carousel_prev')
+      .addEventListener('click', this.showPreviousImage.bind(this));
 
     this.$wrapper
-      .querySelector(".carousel_close")
-      .addEventListener("click", closeCarousel);
+      .querySelector('.carousel_close')
+      .addEventListener('click', closeCarousel);
 
     return this.$wrapper;
   }
@@ -80,31 +81,31 @@ class Carousel {
   showImage(url, title) {
     {
       const container = this.$wrapper.querySelector(
-        ".carousel_media_container"
+        '.carousel_media_container'
       );
       title = this.galleryTitle[this.currentIndex];
 
-      container.innerHTML = "";
+      container.innerHTML = '';
 
-      if (url.endsWith(".mp4")) {
-        const video = document.createElement("video");
+      if (url.endsWith('.mp4')) {
+        const video = document.createElement('video');
         video.controls = true;
         video.autoplay = false;
 
-        const source = document.createElement("source");
+        const source = document.createElement('source');
         source.src = url;
-        source.type = "video/mp4";
+        source.type = 'video/mp4';
         video.appendChild(source);
         container.appendChild(video);
-        video.setAttribute("tabindex", "0");
+        video.setAttribute('tabindex', '0');
       } else {
-        const image = document.createElement("img");
+        const image = document.createElement('img');
         image.src = url;
         image.alt = title;
         container.appendChild(image);
       }
 
-      const titleMedia = document.createElement("h3");
+      const titleMedia = document.createElement('h3');
       titleMedia.textContent = title;
       container.appendChild(titleMedia);
     }

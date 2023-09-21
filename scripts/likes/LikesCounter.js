@@ -2,7 +2,7 @@
  * Subject (Observable) for managing likes count and notifying observers.
  * @class
  */
-class LikesCounter {
+export class LikesCounter {
   /**
    * Create a LikesCounter subject.
    * @constructor

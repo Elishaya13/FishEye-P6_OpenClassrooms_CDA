@@ -1,16 +1,19 @@
+import { Photographer } from '../models/Photographer.js';
+import PhotographersApi from '../api/Api.js';
+import { IndexPhotographerCard } from '../templates/IndexPhotographerCard.js';
 class Index {
   constructor() {
     this.$photographersWrapper = document.querySelector(
-      ".photographer_section"
+      '.photographer_section'
     );
     this.photographersApi = new PhotographersApi(
-      "../../data/photographers.json"
+      '../../data/photographers.json'
     );
   }
 
   async main() {
     const photographersData = await this.photographersApi.getData(
-      "photographers"
+      'photographers'
     );
 
     photographersData

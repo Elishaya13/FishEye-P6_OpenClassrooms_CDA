@@ -1,11 +1,12 @@
 /**
  * Class representing a template for a media card in the photographer's media grid.
  */
-class PhotographerMediaCard {
+export class PhotographerMediaCard {
   /**
    * Create a PhotographerMediaCard.
    * @param {Object} media - The media data for the card.
    * @param {string} photographName - The name of the photographer.
+   * @param {LikesCounter} LikesCounter - An instance of the LikesCounter class for managing likes count
    */
   constructor(media, photographName, LikesCounter) {
     this.photographName = photographName;
@@ -13,31 +14,31 @@ class PhotographerMediaCard {
     this.count = media.likes;
     this.likesCounter = LikesCounter;
 
-    this.$mediaWrapper = document.createElement("article");
-    this.$mediaWrapper.classList.add("photograph_media_item");
+    this.$mediaWrapper = document.createElement('article');
+    this.$mediaWrapper.classList.add('photograph_media_item');
   }
 
   handleLikeButton() {
-    const $heartIcon = this.$mediaWrapper.querySelector(".heart-icon");
-    const $likeCount = this.$mediaWrapper.querySelector(".like-count");
+    const $heartIcon = this.$mediaWrapper.querySelector('.heart-icon');
+    const $likeCount = this.$mediaWrapper.querySelector('.like-count');
 
     const toggleLike = () => {
-      if ($heartIcon.classList.contains("liked")) {
-        $heartIcon.classList.remove("liked");
+      if ($heartIcon.classList.contains('liked')) {
+        $heartIcon.classList.remove('liked');
         this.count--;
-        this.likesCounter.notifyObservers("DEC");
+        this.likesCounter.notifyObservers('DEC');
       } else {
-        $heartIcon.classList.add("liked");
+        $heartIcon.classList.add('liked');
         this.count++;
-        this.likesCounter.notifyObservers("INC");
+        this.likesCounter.notifyObservers('INC');
       }
       $likeCount.textContent = this.count;
     };
 
-    $heartIcon.addEventListener("click", toggleLike);
+    $heartIcon.addEventListener('click', toggleLike);
 
-    $heartIcon.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
+    $heartIcon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
         toggleLike();
       }
     });
@@ -52,17 +53,17 @@ class PhotographerMediaCard {
       <a class="photograph_media_img" role="link" aria-label="Afficher le média dans le caroussel" title="${
         this.media.title
       }" href="${
-      this.media.image && this.media.image !== ""
+      this.media.image && this.media.image !== ''
         ? this.media.image
         : this.media.video
     }" >
     
       ${
-        this.media.image && this.media.image !== ""
+        this.media.image && this.media.image !== ''
           ? `<img src="${this.media.image}" alt="${this.media.title}"></img>`
           : this.media.video
           ? `<video src="${this.media.video}" type="video/mp4" aria-describedby="${this.media.title}">Your browser does not support the video tag.</video>`
-          : ""
+          : ''
       }     
       </a>     
            

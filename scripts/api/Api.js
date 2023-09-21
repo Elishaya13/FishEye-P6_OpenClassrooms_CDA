@@ -21,11 +21,11 @@ class Api {
   async get() {
     return fetch(this.url)
       .then((res) => res.json())
-      .catch((err) => console.log("An error occurs", err));
+      .catch((err) => console.log('An error occurs', err));
   }
 }
 
-class PhotographersApi extends Api {
+export default class PhotographersApi extends Api {
   /**
    *
    * @param {string} url The base URL for photographers' data.
@@ -45,12 +45,12 @@ class PhotographersApi extends Api {
   async getData(dataType) {
     const data = await this.get();
     switch (dataType) {
-      case "photographers":
+      case 'photographers':
         return data.photographers;
-      case "media":
+      case 'media':
         return data.media;
       default:
-        throw new Error("Invalid data type");
+        throw new Error('Invalid data type');
     }
   }
 
@@ -62,12 +62,12 @@ class PhotographersApi extends Api {
    * @returns {Promise<Object>} A promise resolving to the photographer object with the given ID
    */
   async getPhotographerById(photographerId) {
-    const photographers = await this.getData("photographers");
+    const photographers = await this.getData('photographers');
     const photographer = photographers.find((p) => p.id === photographerId);
     if (photographer) {
       return photographer;
     } else {
-      throw new Error("Photographer not found");
+      throw new Error('Photographer not found');
     }
   }
 
@@ -78,14 +78,14 @@ class PhotographersApi extends Api {
    * @returns {Promise<Array>} - An array of media objects associated with the photographer ID.
    */
   async getMediaByPhotographerId(photographerId) {
-    const mediaData = await this.getData("media");
+    const mediaData = await this.getData('media');
     const photographerMedia = mediaData.filter(
       (media) => media.photographerId === photographerId
     );
     if (photographerMedia) {
       return photographerMedia;
     } else {
-      throw new Error("Media not found");
+      throw new Error('Media not found');
     }
   }
 }

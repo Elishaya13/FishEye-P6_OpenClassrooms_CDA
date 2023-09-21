@@ -2,17 +2,17 @@ function sortBy(selectValue, medias) {
   let arr = medias.slice();
 
   switch (selectValue) {
-    case "Popularité":
+    case 'Popularité':
       arr.sort((a, b) => b.likes - a.likes);
       break;
-    case "Date":
+    case 'Date':
       arr.sort((a, b) => {
         const dateA = new Date(a.date);
         const dateB = new Date(b.date);
         return dateA - dateB;
       });
       break;
-    case "Titre":
+    case 'Titre':
       arr.sort((a, b) => a.title.localeCompare(b.title));
       break;
     default:
@@ -28,8 +28,8 @@ function sortBy(selectValue, medias) {
  * @param {PhotographerPageTemplate} instancePhotograph - An instance of PhotographerPageTemplate.
  */
 function onSelectChange(selectElement, instancePhotograph) {
-  let $parentContainer = document.querySelector(".photograph_medias_section");
-  let $articles = document.querySelectorAll(".photograph_media_item");
+  let $parentContainer = document.querySelector('.photograph_medias_section');
+  let $articles = document.querySelectorAll('.photograph_media_item');
 
   // Remove all existing articles from the media section
   $articles.forEach((article) => {
@@ -41,3 +41,5 @@ function onSelectChange(selectElement, instancePhotograph) {
     selectElement
   );
 }
+
+export { sortBy, onSelectChange };

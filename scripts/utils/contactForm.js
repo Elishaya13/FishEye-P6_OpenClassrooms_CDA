@@ -4,23 +4,23 @@
  * @return {void}
  */
 function displayModal() {
-  const $modalWrapper = document.getElementById("contact_modal");
-  $modalWrapper.style.display = "block";
-  const $contactModal = document.querySelector(".modal");
-  document.body.classList.add("modal-open");
+  const $modalWrapper = document.getElementById('contact_modal');
+  $modalWrapper.style.display = 'block';
+  const $contactModal = document.querySelector('.modal');
+  document.body.classList.add('modal-open');
 
   if ($contactModal) {
     $contactModal.focus();
     focusContactModal($contactModal);
   }
-  $contactModal.addEventListener("keyup", onKeyUpContact);
+  $contactModal.addEventListener('keyup', onKeyUpContact);
 }
 
 function closeModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
-  document.body.classList.remove("modal-open");
-  document.removeEventListener("keyup", onKeyUpContact);
+  const modal = document.getElementById('contact_modal');
+  modal.style.display = 'none';
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keyup', onKeyUpContact);
 }
 
 /**
@@ -32,10 +32,10 @@ function closeModal() {
 function focusContactModal(form) {
   const $contactModal = form;
 
-  $contactModal.addEventListener("keydown", (event) => {
-    if (event.key === "Tab") {
+  $contactModal.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
       const focusableElements = $contactModal.querySelectorAll(
-        "input, textarea, button"
+        'input, textarea, button'
       );
 
       const firstElement = focusableElements[0];
@@ -52,7 +52,9 @@ function focusContactModal(form) {
   });
 }
 function onKeyUpContact(e) {
-  if (e.key === "Escape") {
+  if (e.key === 'Escape') {
     closeModal();
   }
 }
+
+export { displayModal, closeModal, focusContactModal, onKeyUpContact };

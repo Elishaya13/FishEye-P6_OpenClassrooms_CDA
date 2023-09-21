@@ -1,7 +1,19 @@
+import { PhotographerHeader } from './PhotographerHeader.js';
+import { Media } from '../models/Media.js';
+import { SortBox } from './SortBox.js';
+import { PhotographerMediaCard } from './PhotographerMediaCard.js';
+import { LikesCounter } from '../likes/LikesCounter.js';
+import { LikesDisplay } from '../likes/LikesDisplay.js';
+import { AboutBox } from './AboutBox.js';
+import { Modal } from './ContactModal.js';
+import { sortBy } from '../utils/sortBy.js';
+import { displayCarousel } from '../utils/carousel.js';
+import { displayModal } from '../utils/contactForm.js';
+
 /**
  * Class representing a template for the photographer page.
  */
-class PhotographerPageTemplate {
+export class PhotographerPageTemplate {
   /**
    * Create a PhotographerPageTemplate.
    * @param {Object} photographer - The photographer data.
@@ -32,8 +44,8 @@ class PhotographerPageTemplate {
     const Template = new PhotographerHeader(this.photographer);
     parent.innerHTML = Template.render();
 
-    const $contact_button = document.querySelector(".contact_button");
-    $contact_button.addEventListener("click", displayModal);
+    const $contact_button = document.querySelector('.contact_button');
+    $contact_button.addEventListener('click', displayModal);
   }
 
   /**
@@ -54,7 +66,7 @@ class PhotographerPageTemplate {
    */
   createPhotographMediaContent(parent, selectValue) {
     const sortedMedias = sortBy(selectValue, this.medias);
-    const $parentContainer = document.getElementById("carousel_modal");
+    const $parentContainer = document.getElementById('carousel_modal');
 
     sortedMedias
       .map((media) => new Media(media, this.photographerName))
@@ -81,7 +93,7 @@ class PhotographerPageTemplate {
     parent.appendChild(renderedTemplate);
 
     //  The DOM element that displays the likes count.
-    this.$countDisplay = renderedTemplate.querySelector(".likes-counter");
+    this.$countDisplay = renderedTemplate.querySelector('.likes-counter');
 
     // The observer that updates the likes display when the likes count changes.
     this.displayLikes = new LikesDisplay(this.likes, this.$countDisplay);
@@ -116,14 +128,14 @@ class PhotographerPageTemplate {
     const galleryTitle = [];
 
     links.forEach((link) => {
-      const href = link.getAttribute("href");
-      const title = link.getAttribute("title");
+      const href = link.getAttribute('href');
+      const title = link.getAttribute('title');
 
       if (href && title) {
         gallery.push(href);
         galleryTitle.push(title);
 
-        link.addEventListener("click", (e) => {
+        link.addEventListener('click', (e) => {
           e.preventDefault();
           displayCarousel(href, title, parent, gallery, galleryTitle);
         });

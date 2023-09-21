@@ -1,28 +1,30 @@
+import PhotographersApi from '../api/Api.js';
+import { PhotographerPageTemplate } from '../templates/PhotographerPageTemplate.js';
 /**
  * Class representing a photographer page.
  */
 class PhotographerPage {
   constructor() {
     // Targets DOM elements
-    this.$photographersWrapper = document.querySelector(".photograph_header");
+    this.$photographersWrapper = document.querySelector('.photograph_header');
     this.$photographerMediasWrapper = document.querySelector(
-      ".photograph_medias_section"
+      '.photograph_medias_section'
     );
-    this.$photographerMain = document.getElementById("main");
-    this.$photographerModal = document.getElementById("contact_modal");
-    this.$photographCarousel = document.getElementById("carousel_modal");
+    this.$photographerMain = document.getElementById('main');
+    this.$photographerModal = document.getElementById('contact_modal');
+    this.$photographCarousel = document.getElementById('carousel_modal');
 
     // Retrieves the ID parameter passed on the page
     this.params = new URL(document.location).searchParams;
-    this.photographerId = parseInt(this.params.get("id"));
+    this.photographerId = parseInt(this.params.get('id'));
 
     // Get data from API
     this.photographerData = new PhotographersApi(
-      "../../data/photographers.json"
+      '../../data/photographers.json'
     ).getPhotographerById(this.photographerId);
 
     this.photographerMedia = new PhotographersApi(
-      "../../data/photographers.json"
+      '../../data/photographers.json'
     ).getMediaByPhotographerId(this.photographerId);
   }
 
@@ -35,7 +37,7 @@ class PhotographerPage {
       const photographerDataMedia = await this.photographerMedia;
 
       if (!photographerData) {
-        console.error("Photographer data not available");
+        console.error('Photographer data not available');
         return;
       }
 
@@ -55,13 +57,13 @@ class PhotographerPage {
 
       Template.createPhotographMediaContent(
         this.$photographerMediasWrapper,
-        "Popularité"
+        'Popularité'
       );
       Template.createPhotographBoxAbout(this.$photographerMain);
       Template.createPhotographerModal(this.$photographerModal);
       Template.createPhotographCarousel(this.$photographCarousel);
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   }
 }

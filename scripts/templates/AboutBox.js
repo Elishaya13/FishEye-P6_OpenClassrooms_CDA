@@ -1,17 +1,17 @@
-class AboutBox {
+export class AboutBox {
   constructor(likes, price) {
     this.likes = likes;
     this.price = price;
   }
 
   render() {
-    const $photographAboutDiv = document.createElement("div");
-    $photographAboutDiv.setAttribute("tabindex", "0");
+    const $photographAboutDiv = document.createElement('div');
+    $photographAboutDiv.setAttribute('tabindex', '0');
     $photographAboutDiv.setAttribute(
-      "aria-label",
-      "Popularité et tarif journalier du photographe"
+      'aria-label',
+      'Popularité et tarif journalier du photographe'
     );
-    $photographAboutDiv.classList.add("photograph_about");
+    $photographAboutDiv.classList.add('photograph_about');
 
     const photographAbout = `
     <div class="about_popularity_container">

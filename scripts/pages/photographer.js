@@ -1,7 +1,11 @@
 import PhotographersApi from '../api/Api.js';
+import { PhotographersFactory } from '../factories/PhotographersFactory.js';
+import { FilterData } from '../utils/FilterData.js';
 import { PhotographerPageTemplate } from '../templates/PhotographerPageTemplate.js';
+
 /**
  * Class representing a photographer page.
+ * This class handles the display of a photographer's page, including their information and media.
  */
 class PhotographerPage {
   constructor() {
@@ -18,53 +22,71 @@ class PhotographerPage {
     this.params = new URL(document.location).searchParams;
     this.photographerId = parseInt(this.params.get('id'));
 
-    // Get data from API
-    this.photographerData = new PhotographersApi(
+    // Instance of the PhotographersApi class for fetching photographer data from the specified JSON file.
+    this.photographersApi = new PhotographersApi(
       '../../data/photographers.json'
-    ).getPhotographerById(this.photographerId);
-
-    this.photographerMedia = new PhotographersApi(
-      '../../data/photographers.json'
-    ).getMediaByPhotographerId(this.photographerId);
+    );
   }
 
   /**
    * Main method to initialize the photographer page.
    */
   async main() {
-    try {
-      const photographerData = await this.photographerData;
-      const photographerDataMedia = await this.photographerMedia;
+    // Get data from API
+    const photographersData =
+      await this.photographersApi.getPhotographersData();
 
-      if (!photographerData) {
-        console.error('Photographer data not available');
-        return;
-      }
+    const Photographers = new PhotographersFactory(
+      photographersData,
+      'photographers'
+    );
+    // All "photographers" data
+    const photographers = Photographers.createPhotographers();
 
-      const photographerName = photographerData.name;
+    // All "media" data
+    const Medias = new PhotographersFactory(photographersData, 'medias');
 
-      const Template = new PhotographerPageTemplate(
-        photographerData,
-        photographerDataMedia,
-        photographerName
-      );
-      // Call the methods of the class for creating each visual part of the page
-      Template.createPhotographHeaderContent(this.$photographersWrapper);
-      Template.createPhotographSortBox(
-        this.$photographerMediasWrapper,
-        Template
-      );
+    // Filter for keep the data for this photographer
+    const PhotographFilter = new FilterData(
+      this.photographerId,
+      photographers,
+      Medias
+    );
 
-      Template.createPhotographMediaContent(
-        this.$photographerMediasWrapper,
-        'Popularité'
-      );
-      Template.createPhotographBoxAbout(this.$photographerMain);
-      Template.createPhotographerModal(this.$photographerModal);
-      Template.createPhotographCarousel(this.$photographCarousel);
-    } catch (error) {
-      console.error('Error:', error);
+    const PhotographById = await PhotographFilter.getDatasPhotographerById(
+      this.photographerId
+    );
+
+    const MediasById = await PhotographFilter.getMediaByPhotographerId(
+      this.photographerId
+    );
+
+    if (!PhotographById) {
+      console.error('Photographer data not available');
+      return;
     }
+
+    const photographerName = PhotographById.name;
+
+    const Template = new PhotographerPageTemplate(
+      PhotographById,
+      MediasById,
+      photographerName
+    );
+    // Call the methods of the class for creating each visual part of the page
+    Template.createPhotographHeaderContent(this.$photographersWrapper);
+    Template.createPhotographSortBox(this.$photographerMediasWrapper, Template);
+
+    Template.createPhotographMediaContent(
+      this.$photographerMediasWrapper,
+      'Popularité'
+    );
+    Template.createPhotographBoxAbout(this.$photographerMain);
+    Template.createPhotographerModal(this.$photographerModal);
+    Template.createPhotographCarousel(this.$photographCarousel);
+  }
+  catch(error) {
+    console.error('Error:', error);
   }
 }
 

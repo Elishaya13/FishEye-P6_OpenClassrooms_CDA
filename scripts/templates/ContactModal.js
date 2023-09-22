@@ -66,7 +66,6 @@ export class Modal {
     const messageValue = document.querySelector('#message').value;
 
     if (prenomValue && nomValue && emailValue && messageValue) {
-      // Displaying values ​​in the console
       console.log('Prénom:', prenomValue);
       console.log('Nom:', nomValue);
       console.log('Email:', emailValue);

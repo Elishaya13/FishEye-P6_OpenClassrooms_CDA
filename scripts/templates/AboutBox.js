@@ -1,4 +1,15 @@
+/**
+ * Represents an about box displaying photographer popularity and daily price.
+ * @class
+ */
 export class AboutBox {
+  /**
+   * Create an instance of the AboutBox class.
+   * @constructor
+   * @param {number} likes - The number of likes for the photographer.
+   * @param {number} price - The daily price of the photographer.
+   */
+  const;
   constructor(likes, price) {
     this.likes = likes;
     this.price = price;

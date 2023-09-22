@@ -1,4 +1,4 @@
-import { onSelectChange } from '../utils/sortBy.js';
+import { onSelectChange } from '../utils/sorter.js';
 export class SortBox {
   constructor(medias, instancePhotograph) {
     this.$wrapper = document.createElement('div');

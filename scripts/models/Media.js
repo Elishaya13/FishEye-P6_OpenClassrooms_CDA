@@ -27,27 +27,6 @@ export class Media {
     return this._title;
   }
 
-  get image() {
-    if (this._image) {
-      // Get the first word (first name)
-      let photographerFirstName = this._photographerName.split(' ')[0];
-
-      if (this._photographerName.includes('-')) {
-        // Replace the dash with a space
-        photographerFirstName = this._photographerName.replace('-', ' ');
-        const nameParts = photographerFirstName.split(' ');
-        if (nameParts.length > 1) {
-          // Take the first two words
-          photographerFirstName = nameParts.slice(0, 2).join(' ');
-        }
-      }
-
-      return `/assets/photographers/${photographerFirstName}/${this._image}`;
-    }
-
-    return ''; // Return an empty string if _image doesn't exist
-  }
-
   get likes() {
     return this._likes;
   }
@@ -60,24 +39,41 @@ export class Media {
     return this._price;
   }
 
-  get video() {
-    if (this._video) {
-      // Get the first word (first name)
-      let photographerFirstName = this._photographerName.split(' ')[0];
-
-      if (this._photographerName.includes('-')) {
-        // Replace the dash with a space
-        photographerFirstName = this._photographerName.replace('-', ' ');
-        const nameParts = photographerFirstName.split(' ');
-        if (nameParts.length > 1) {
-          // Take the first two words
-          photographerFirstName = nameParts.slice(0, 2).join(' ');
+  /**
+   * Get the file (image or video) associated with the media.
+   *
+   * @param {string} type - The type of file to retrieve ("image" or "video").
+   * @returns {string} The file path or an empty string if the file doesn't exist.
+   */
+  getFile(type) {
+    if (type === 'image' || type === 'video') {
+      let file = '';
+      if (this[`_${type}`]) {
+        // Get the first word (first name)
+        let photographerFirstName = this._photographerName.split(' ')[0];
+        if (this._photographerName.includes('-')) {
+          // Replace the dash with a space
+          photographerFirstName = this._photographerName.replace('-', ' ');
+          const nameParts = photographerFirstName.split(' ');
+          if (nameParts.length > 1) {
+            // Take the first two words
+            photographerFirstName = nameParts.slice(0, 2).join(' ');
+          }
         }
+        file = `/assets/photographers/${photographerFirstName}/${
+          this[`_${type}`]
+        }`;
       }
-
-      return `/assets/photographers/${photographerFirstName}/${this._video}`;
+      return file;
     }
+    return '';
+  }
 
-    return ''; // Return an empty string if _video doesn't exist
+  get image() {
+    return this.getFile('image');
+  }
+
+  get video() {
+    return this.getFile('video');
   }
 }

@@ -6,7 +6,7 @@ import { LikesCounter } from '../likes/LikesCounter.js';
 import { LikesDisplay } from '../likes/LikesDisplay.js';
 import { AboutBox } from './AboutBox.js';
 import { Modal } from './ContactModal.js';
-import { sortBy } from '../utils/sortBy.js';
+import { sortBy } from '../utils/sorter.js';
 import { displayCarousel } from '../utils/carousel.js';
 import { displayModal } from '../utils/contactForm.js';
 

@@ -62,7 +62,6 @@ function focusCarouselModal(modal) {
   $carouselModal.addEventListener('keydown', (event) => {
     if (event.key === 'Tab') {
       const focusableElements = $carouselModal.querySelectorAll('button');
-      //const focusableVideo = document.querySelector("video[controls]");
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -75,10 +74,6 @@ function focusCarouselModal(modal) {
       }
     }
   });
-  //   const videoElement = $carouselModal.querySelector("video[controls]");
-  //   if (videoElement) {
-  //     videoElement.focus();
-  //   }
 }
 
 export { onKeyUp, displayCarousel, closeCarousel, focusCarouselModal };

@@ -1,10 +1,11 @@
-import { Photographer } from '../models/Photographer.js';
+//import { Photographer } from '../models/Photographer.js';
 export class PhotographerHeader {
   constructor(photographer) {
     this.photographer = photographer;
   }
   render() {
-    const photographerData = new Photographer(this.photographer);
+    //const photographerData = new Photographer(this.photographer);
+    const photographerData = this.photographer;
 
     const photographHeader = `
       <div class="photographer_infos_container" data-testid="photographer-infos-container">

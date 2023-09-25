@@ -7,13 +7,13 @@ export class IndexPhotographerCard {
     const $wrapper = document.createElement('article');
 
     const photographerCard = `
-      <a href=photographer.html?id=${this.photographer.id} aria-labelledby="${this.photographer.name}" data-testid="photographer-card-${this.photographer.id}">
+      <a href=photographer.html?id=${this.photographer.id} aria-labelledby="${this.photographer.id}" data-testid="photographer-card-${this.photographer.id}">
         <img          
-            alt="photo de profil du photographe : ${this.photographer.name}"
+            alt="Photo du profil du photographe : ${this.photographer.name}"
             src="${this.photographer.portrait}"
           
         />    
-        <h2 id="${this.photographer.name}">${this.photographer.name}</h2>
+        <h2 id="${this.photographer.id}">${this.photographer.name}</h2>
       </a>
       <h3>${this.photographer.city}, ${this.photographer.country}</h3>
       <p>${this.photographer.tagline}</p>

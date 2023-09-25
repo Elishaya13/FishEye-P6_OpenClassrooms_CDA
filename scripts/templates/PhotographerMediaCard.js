@@ -62,18 +62,20 @@ export class PhotographerMediaCard {
         this.media.image && this.media.image !== ''
           ? `<img src="${this.media.image}" alt="${this.media.title}"></img>`
           : this.media.video
-          ? `<video src="${this.media.video}" type="video/mp4" aria-describedby="${this.media.title}">Your browser does not support the video tag.</video>`
+          ? `<video>
+          <source src="${this.media.video}" type="video/mp4" aria-describedby="media-description-${this.media.id}">Your browser does not support the video tag.</source>
+          </video>`
           : ''
       }     
       </a>     
            
         <div class="media_footer">
-          <h3>${this.media.title}</h3>
+          <h3 id="media-description-${this.media.id}">${this.media.title}</h3>
           <span class= "like-count" aria-label="likes">${
             this.media.likes
           }</span>
           <a class="heart-icon" tabindex="0" role="button" aria-label="Cliquez pour aimer cet élément">
-            <i class="fas fa-heart"></i>
+            <em class="fas fa-heart"></em>
           </a>         
         </div>   
         <div class="footer"></div> 

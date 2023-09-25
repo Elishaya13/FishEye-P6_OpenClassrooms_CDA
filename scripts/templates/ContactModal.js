@@ -20,7 +20,7 @@ export class Modal {
     $photographerModal.setAttribute('aria-label', 'formulaire de contact');
 
     const photographModalContent = `
-    <div role"dialog" aria-labelledby="contact-name">
+    <div role="dialog" aria-labelledby="contact-name">
         <h2 id="contact-name">Contactez-moi <br> ${this.name}</h2>
         <button class="contact_close_button" role="button" aria-label="Cliquez pour fermer le formulaire de contact" data-testid="modal_button_close">        
           <span class="sr-only">Fermer le formulaire de contact</span>

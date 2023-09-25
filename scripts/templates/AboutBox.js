@@ -28,7 +28,7 @@ export class AboutBox {
     <div class="about_popularity_container">
         <span class = "likes-counter" aria-label="Nombre de Likes">${this.likes}</span>
         <span class="heart-icon" role="img" aria-label="Icone Likes">
-        <i class="fas fa-heart"></i>
+        <em class="fas fa-heart"></em>
         </span>
     </div>    
     <span class="about_price" aria-label="Prix par jour du photographe">${this.price}€ / jour  </span>

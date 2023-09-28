@@ -27,8 +27,6 @@ class Index {
     const photographersData =
       await this.photographersApi.getPhotographersData();
 
-    console.log(photographersData.photographers);
-
     const photographers = photographersData.photographers;
 
     photographers

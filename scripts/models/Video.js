@@ -4,9 +4,7 @@ export class Video extends Media {
   constructor(data) {
     super(data);
     this._id = data.id;
-    if (data.video !== undefined) {
-      this._video = data.video;
-    }
+    this._video = data.video;
   }
 
   get mediaHtml() {
@@ -15,6 +13,6 @@ export class Video extends Media {
     </video>`;
   }
   get path() {
-    return this._video || '';
+    return this._video;
   }
 }

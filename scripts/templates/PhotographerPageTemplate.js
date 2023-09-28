@@ -54,7 +54,7 @@ export class PhotographerPageTemplate {
    * Creates a photograph sort box and appends it to a parent element.
    *
    * @param {HTMLElement} parent - The parent element to which the sort box will be appended.
-   * @param {Photograph} instancePhotograph - Instance of the PhotographPageTemplate class.
+   * @param {PhotographerPageTemplate} instancePhotograph - Instance of the PhotographPageTemplate class.
    */
   createPhotographSortBox(parent, instancePhotograph) {
     const Template = new SortBox(instancePhotograph);

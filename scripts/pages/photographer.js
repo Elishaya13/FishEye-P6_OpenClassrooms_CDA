@@ -1,5 +1,4 @@
 import PhotographersApi from '../api/Api.js';
-import { PhotographersFactory } from '../factories/PhotographersFactory.js';
 import { FilterData } from '../utils/FilterData.js';
 import { PhotographerPageTemplate } from '../templates/PhotographerPageTemplate.js';
 
@@ -33,24 +32,18 @@ class PhotographerPage {
    */
   async main() {
     // Get data from API
-    const photographersData =
-      await this.photographersApi.getPhotographersData();
+    const datas = await this.photographersApi.getPhotographersData();
 
-    const Photographers = new PhotographersFactory(
-      photographersData,
-      'photographers'
-    );
     // All "photographers" data
-    const photographers = Photographers.createPhotographers();
+    const photographersDatas = datas.photographers;
 
     // All "media" data
-    const Medias = new PhotographersFactory(photographersData, 'medias');
+    const mediasDatas = datas.media;
 
-    // Filter for keep the data for this photographer
     const PhotographFilter = new FilterData(
       this.photographerId,
-      photographers,
-      Medias
+      photographersDatas,
+      mediasDatas
     );
 
     const PhotographById = await PhotographFilter.getDatasPhotographerById(
@@ -73,6 +66,7 @@ class PhotographerPage {
       MediasById,
       photographerName
     );
+
     // Call the methods of the class for creating each visual part of the page
     Template.createPhotographHeaderContent(this.$photographersWrapper);
     Template.createPhotographSortBox(this.$photographerMediasWrapper, Template);

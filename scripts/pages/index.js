@@ -1,6 +1,5 @@
 import PhotographersApi from '../api/Api.js';
 import { PhotographersFactory } from '../factories/PhotographersFactory.js';
-//import { Photographer } from '../models/Photographer.js';
 import { IndexPhotographerCard } from '../templates/IndexPhotographerCard.js';
 
 /**
@@ -27,12 +26,6 @@ class Index {
     // Get data from API
     const photographersData =
       await this.photographersApi.getPhotographersData();
-
-    // const PhotographersFactory = new PhotographersFactory(
-    //   photographersData,
-    //   'photographers'
-    // );
-
     const Photographers = new PhotographersFactory(
       photographersData,
       'photographers'

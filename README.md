@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Fisheye - Porjet 6 - OpenClassrooms</h1>
+<h1 align="center" id="title">Fisheye - Projet 6 - OpenClassrooms</h1>
 
 <p id="description">Ce projet a été réalisé dans le cadre du sixième module de la formation OpenClassrooms pour devenir concepteur développeur d'application.</p>
 

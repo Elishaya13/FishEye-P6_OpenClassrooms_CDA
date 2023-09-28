@@ -1,3 +1,5 @@
+import { MediaFactory } from '../factories/MediaFactory.js';
+
 /**
  * Class representing a template for a media card in the photographer's media grid.
  */
@@ -49,31 +51,18 @@ export class PhotographerMediaCard {
    * @returns {HTMLElement} The created HTML element representing the media card.
    */
   createMediaCard() {
+    const mediaFactory = new MediaFactory(this.media);
+    const mediaElement = mediaFactory.element;
+
     const mediaCard = `
-      <a class="photograph_media_img" role="link" aria-label="Afficher le média dans le caroussel" title="${
-        this.media.title
-      }" href="${
-      this.media.image && this.media.image !== ''
-        ? this.media.image
-        : this.media.video
-    }" >
+      <a class="photograph_media_img" role="link" aria-label="Afficher le média dans le caroussel" title="${mediaElement.title}" href="${mediaElement.path}" >
     
-      ${
-        this.media.image && this.media.image !== ''
-          ? `<img src="${this.media.image}" alt="${this.media.title}"></img>`
-          : this.media.video
-          ? `<video>
-          <source src="${this.media.video}" type="video/mp4" aria-describedby="media-description-${this.media.id}">Your browser does not support the video tag.</source>
-          </video>`
-          : ''
-      }     
+      ${mediaElement.mediaHtml}
       </a>     
            
         <div class="media_footer">
-          <h3 id="media-description-${this.media.id}">${this.media.title}</h3>
-          <span class= "like-count" aria-label="likes">${
-            this.media.likes
-          }</span>
+          <h3 id="media-description-${mediaElement.id}">${mediaElement.title}</h3>
+          <span class= "like-count" aria-label="likes">${mediaElement.likes}</span>
           <a class="heart-icon" tabindex="0" role="button" aria-label="Cliquez pour aimer cet élément">
             <em class="fas fa-heart"></em>
           </a>         

@@ -9,6 +9,7 @@ import { Modal } from './ContactModal.js';
 import { sortBy } from '../utils/sorter.js';
 import { displayCarousel } from '../utils/carousel.js';
 import { displayModal } from '../utils/contactForm.js';
+import { Photographer } from '../models/Photographer.js';
 
 /**
  * Class representing a template for the photographer page.
@@ -41,7 +42,8 @@ export class PhotographerPageTemplate {
    * @param {HTMLElement} parent - The parent element to which the content will be injected.
    */
   createPhotographHeaderContent(parent) {
-    const Template = new PhotographerHeader(this.photographer);
+    const photographerData = new Photographer(this.photographer);
+    const Template = new PhotographerHeader(photographerData);
     parent.innerHTML = Template.render();
 
     const $contact_button = document.querySelector('.contact_button');

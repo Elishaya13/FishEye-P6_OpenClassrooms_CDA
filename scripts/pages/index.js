@@ -1,5 +1,5 @@
 import PhotographersApi from '../api/Api.js';
-import { PhotographersFactory } from '../factories/PhotographersFactory.js';
+import { Photographer } from '../models/Photographer.js';
 import { IndexPhotographerCard } from '../templates/IndexPhotographerCard.js';
 
 /**
@@ -26,17 +26,19 @@ class Index {
     // Get data from API
     const photographersData =
       await this.photographersApi.getPhotographersData();
-    const Photographers = new PhotographersFactory(
-      photographersData,
-      'photographers'
-    );
 
-    const photographers = Photographers.createPhotographers();
+    console.log(photographersData.photographers);
 
-    photographers.forEach((photographer) => {
-      const Template = new IndexPhotographerCard(photographer);
-      this.$photographersWrapper.appendChild(Template.createPhotographerCard());
-    });
+    const photographers = photographersData.photographers;
+
+    photographers
+      .map((photographer) => new Photographer(photographer))
+      .forEach((photographer) => {
+        const Template = new IndexPhotographerCard(photographer);
+        this.$photographersWrapper.appendChild(
+          Template.createPhotographerCard()
+        );
+      });
   }
 }
 const index = new Index();
